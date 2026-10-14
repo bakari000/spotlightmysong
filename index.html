@@ -350,7 +350,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <span class="admit">Admits one song or DJ mix</span>
           <div class="price"><sup>$</sup>19</div>
           <span class="once">one time</span>
-          <a href="#" class="btn line" data-plan="starter">Get Starter</a>
+          <a href="https://buy.stripe.com/28E28qdlX9ce2O96oC2ZO02" class="btn line" data-plan="starter">Get Starter</a>
         </div>
       </article>
 
@@ -370,7 +370,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <span class="admit">Admits one song or DJ mix</span>
           <div class="price"><sup>$</sup>49</div>
           <span class="once">one time</span>
-          <a href="#" class="btn" data-plan="boost">Get Boost</a>
+          <a href="https://buy.stripe.com/dRmcN4a9Lbkm0G17sG2ZO01" class="btn" data-plan="boost">Get Boost</a>
         </div>
       </article>
 
@@ -391,7 +391,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <span class="admit">Admits one song or DJ mix</span>
           <div class="price"><sup>$</sup>149</div>
           <span class="once">one time</span>
-          <a href="#" class="btn line" data-plan="spotlight">Get Spotlight</a>
+          <a href="https://buy.stripe.com/8x200i81DgEG60l7sG2ZO00" class="btn line" data-plan="spotlight">Get Spotlight</a>
         </div>
       </article>
     </div>
@@ -443,7 +443,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <script>
 /* Paste each plan's payment link between the quotes when ready. */
-var PAY_LINKS = { starter: "", boost: "", spotlight: "" };
+var PAY_LINKS = {
+  starter: "https://buy.stripe.com/28E28qdlX9ce2O96oC2ZO02",
+  boost: "https://buy.stripe.com/dRmcN4a9Lbkm0G17sG2ZO01",
+  spotlight: "https://buy.stripe.com/8x200i81DgEG60l7sG2ZO00"
+};
 
 document.querySelectorAll("[data-plan]").forEach(function(btn){
   var url = PAY_LINKS[btn.getAttribute("data-plan")];
