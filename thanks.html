@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're In | Spotlight My Song</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0E0A12;
+  --night-2:#18111E;
+  --night-3:#221828;
+  --line:#33283B;
+  --cream:#FFF3DF;
+  --smoke:#D9CFDC;
+  --tungsten:#FFC46B;
+  --amber:#FF9A2E;
+  --ember:#E2572F;
+  --rose:#E8547F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--cream);font-family:Figtree,system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--tungsten);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.display{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;text-transform:uppercase;line-height:.9;letter-spacing:.005em}
+
+/* film grain over everything, like a photo taken in a venue */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.09;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:16px;padding:16px 30px;border-radius:999px;
+  background:linear-gradient(135deg,#FFE0A3,var(--tungsten) 35%,var(--amber));color:#1B0F05;
+  box-shadow:0 0 0 1px rgba(255,214,150,.6) inset,0 10px 40px rgba(255,154,46,.35);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,214,150,.8) inset,0 14px 50px rgba(255,154,46,.5)}
+.btn.line{background:rgba(255,243,223,.04);color:var(--cream);box-shadow:0 0 0 1px rgba(255,243,223,.28) inset;backdrop-filter:blur(6px)}
+
+
+.top{padding:22px 0}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.logo svg{width:24px;height:24px}
+.hero{position:relative;text-align:center;padding:40px 0 60px;overflow:hidden;
+  background:radial-gradient(70% 80% at 50% 0%,rgba(255,196,107,.28),transparent 70%)}
+.check{width:76px;height:76px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#FFE0A3,var(--tungsten) 40%,var(--amber));box-shadow:0 0 50px rgba(255,170,80,.5)}
+.check svg{width:36px;height:36px;stroke:#1B0F05;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+h1{font-size:clamp(52px,12vw,104px);color:#fff}
+.lead{color:#fff;font-size:19px;max-width:36ch;margin:16px auto 0}
+.plan-pill{display:inline-block;margin-top:18px;font-weight:700;font-size:15px;padding:8px 16px;border-radius:999px;background:rgba(255,196,107,.14);box-shadow:0 0 0 1px rgba(255,196,107,.45) inset;color:#FFE1A6}
+section{padding:56px 0}
+.h2{font-size:clamp(40px,7vw,64px);color:#fff}
+.sub{color:var(--smoke);font-size:17px;max-width:52ch;margin-top:12px}
+.card{background:var(--night-3);border-radius:22px;padding:28px 24px;box-shadow:0 0 0 1px var(--line) inset;margin-top:28px}
+.send ol{list-style:none;counter-reset:n;display:grid;gap:14px;margin:6px 0 24px}
+.send li{position:relative;padding-left:44px;font-size:16.5px}
+.send li::before{counter-increment:n;content:counter(n);position:absolute;left:0;top:-2px;width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;font-weight:800;color:#1B0F05;background:var(--tungsten)}
+.send li b{color:#fff}
+.send li span{display:block;color:var(--smoke);font-size:14.5px}
+.mail{display:block;margin-top:14px;color:var(--smoke);font-size:14.5px;text-align:center}
+.mail b{color:#FFE1A6}
+.btn{width:100%}
+label{display:block;font-weight:600;font-size:15px;margin:16px 0 6px}
+input,select{width:100%;font:inherit;font-size:16px;color:var(--cream);background:var(--night);border:0;border-radius:12px;padding:14px;box-shadow:0 0 0 1px var(--line) inset}
+input:focus,select:focus{outline:2px solid var(--tungsten)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#plan{margin-top:28px;display:none}
+.day{display:grid;grid-template-columns:86px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--line)}
+.day:first-child{border-top:0}
+.when{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;text-transform:uppercase;font-size:22px;line-height:1;color:var(--tungsten)}
+.when small{display:block;font-family:Figtree,sans-serif;font-weight:600;font-size:12.5px;color:var(--smoke);text-transform:none;margin-top:5px}
+.what b{color:#fff;font-size:16.5px}
+.what p{color:var(--smoke);font-size:15px;margin-top:3px}
+.cap{margin-top:8px;font-size:14.5px;color:#FFE1A6;background:rgba(255,196,107,.08);border-radius:10px;padding:10px 12px;position:relative}
+.copy{margin-top:6px;font:inherit;font-size:13px;font-weight:700;color:var(--tungsten);background:none;border:0;cursor:pointer;padding:4px 0}
+.note{color:var(--smoke);font-size:14.5px;margin-top:18px}
+.gets{list-style:none;display:grid;gap:12px}
+.gets li{position:relative;padding-left:30px;font-size:16.5px;color:#fff}
+.gets li::before{content:"";position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:50%;background:rgba(255,196,107,.18);box-shadow:0 0 0 1px rgba(255,196,107,.55) inset}
+.gets li::after{content:"";position:absolute;left:6px;top:9px;width:6px;height:4px;border-left:2px solid var(--tungsten);border-bottom:2px solid var(--tungsten);transform:rotate(-45deg)}
+.gets li.now{color:#FFE1A6}
+.gets li.now span{font-size:13px;font-weight:700;color:#1B0F05;background:var(--tungsten);border-radius:999px;padding:2px 9px;margin-left:6px;white-space:nowrap}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--smoke);font-size:14px;text-align:center}
+@media (max-width:520px){.row2{grid-template-columns:1fr}.day{grid-template-columns:72px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap top">
+  <a href="/" class="logo"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3DF"/><stop offset="1" stop-color="#FF9A2E"/></linearGradient></defs><circle cx="16" cy="5" r="4" fill="#FFC46B"/><path d="M13.5 8 L2 30 H30 L18.5 8 Z" fill="url(#lg)" opacity=".85"/></svg>Spotlight My Song</a>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h1 class="display">You're in</h1>
+    <p class="lead">Your payment went through. Two quick steps and your campaign is underway.</p>
+    <span class="plan-pill" id="pill">Order confirmed</span>
+  </div>
+</header>
+
+<section class="coming" id="coming" hidden>
+  <div class="wrap">
+    <h2 class="display h2">What's coming</h2>
+    <p class="sub" id="comingsub"></p>
+    <div class="card"><ul class="gets" id="gets"></ul></div>
+  </div>
+</section>
+
+<section class="send">
+  <div class="wrap">
+    <h2 class="display h2">Step 1: Send your music</h2>
+    <p class="sub">Send these in one email so we can start. Your full campaign arrives within 3 to 5 days after we get them.</p>
+    <div class="card">
+      <ol>
+        <li><b>Your song or DJ mix file</b><span>A Google Drive, Dropbox or WeTransfer link to the MP3 or WAV.</span></li>
+        <li><b>Your streaming or SoundCloud link</b><span>If it's not out yet, send your release date instead.</span></li>
+        <li><b>Your cover art</b><span>Attach the image, or tell us if you don't have one yet.</span></li>
+        <li><b>A few lines about you</b><span>Your artist name, your genre, two artists you sound like, and who the song is for.</span></li>
+      </ol>
+      <a class="btn" id="mailbtn" href="#">Email my music</a>
+      <span class="mail">Or send it to <b id="mailaddr"></b></span>
+    </div>
+  </div>
+</section>
+
+<section class="planner">
+  <div class="wrap">
+    <h2 class="display h2">Step 2: Start your rollout today</h2>
+    <p class="sub">Don't wait on us to start building buzz. Put in your release date and get your posting schedule right now.</p>
+    <div class="card">
+      <form id="f">
+        <label for="t">Song or mix title</label>
+        <input id="t" required placeholder="Excellence" autocomplete="off">
+        <div class="row2">
+          <div><label for="a">Artist name</label><input id="a" required placeholder="Your artist name" autocomplete="off"></div>
+          <div><label for="d">Release date</label><input id="d" type="date" required></div>
+        </div>
+        <label for="p">Main platform</label>
+        <select id="p"><option>Spotify</option><option>SoundCloud</option><option>Apple Music</option><option>YouTube</option><option>Audiomack</option></select>
+        <button class="btn" style="margin-top:22px;border:0;cursor:pointer" type="submit">Build my schedule</button>
+      </form>
+      <div id="plan"></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Questions about your order? Just reply to your receipt email.</div></footer>
+
+<script>
+/* Set the email customers send their music to. */
+var ORDER_EMAIL = "spotlightmysongofficial@gmail.com";
+
+var plans = {starter:"Starter", boost:"Boost", spotlight:"Spotlight"};
+var q = new URLSearchParams(location.search), plan = plans[(q.get("plan")||"").toLowerCase()];
+if (plan) document.getElementById("pill").textContent = plan + " plan confirmed";
+document.getElementById("mailaddr").textContent = ORDER_EMAIL;
+var GETS = {
+ starter:["Cover art and visual review with honest feedback","Custom release plan for your song or DJ mix","Three promo graphics ready to post","Captions written for every post","Streaming readiness check for loudness, clipping and file quality"],
+ boost:["Short promo video for Reels, TikTok and Shorts","Hook finder: the best 15 seconds of your song to use in clips","Two week posting schedule","Ten video ideas you can film without showing your face"],
+ spotlight:["Spotify editorial pitch written for you","Artist bio and one page press kit","Ad playbook with exact targeting, budget and ad copy","Step by step guide to launch your ads","Two week check-in: send your stats, get your next moves"]
+};
+var key=(q.get("plan")||"").toLowerCase(), list=[];
+if (key==="starter") list=GETS.starter;
+if (key==="boost") list=GETS.starter.concat(GETS.boost);
+if (key==="spotlight") list=GETS.starter.concat(GETS.boost, GETS.spotlight);
+if (list.length){
+  var ul=document.getElementById("gets");
+  ul.innerHTML='<li class="now">Your starter posting schedule <span>Ready now</span></li>';
+  list.forEach(function(x){var li=document.createElement("li");li.textContent=x;ul.appendChild(li)});
+  document.getElementById("comingsub").textContent="Everything in your "+plan+" plan. Your posting schedule is ready below right now. The rest arrives within 3 to 5 days after you send your music.";
+  document.getElementById("coming").hidden=false;
+}
+
+var body = "Plan: " + (plan||"") + "\n\nArtist name:\nSong or mix title:\nGenre:\nTwo artists I sound like:\nWho the song is for:\n\nSong file link (Drive, Dropbox or WeTransfer):\nStreaming or SoundCloud link:\nRelease date:\n\nCover art: attached / don't have one yet\n";
+document.getElementById("mailbtn").href = "mailto:" + ORDER_EMAIL + "?subject=" + encodeURIComponent("New order: " + (plan||"Spotlight My Song")) + "&body=" + encodeURIComponent(body);
+
+var steps = [
+ [-7,"Tease it","Post a 10 second clip of the best part of your song with no title. Let people wonder.","Something's coming. {date}."],
+ [-5,"Reveal the cover","Post the cover art on its own. Pin it to the top of your profile.","{title}. Out {date} on {plat}."],
+ [-3,"Show the story","Share where the song came from in one short video or post. People connect to the why.","This one means a lot. {title} drops {date}."],
+ [-1,"Countdown","Post the hook clip again with the release time. Ask friends to set a reminder.","Tomorrow. {title}. Link in bio."],
+ [0,"Release day","Post the link everywhere: your feed, your story, your bio, and every group chat. Reply to every comment.","{title} is out now on {plat}. Go run it up."],
+ [1,"Say thank you","Repost anyone who shared it. Thank listeners by name in your story.","Y'all showed love on {title}. Thank you. Keep it going."],
+ [3,"Behind the scenes","Show a clip of you making or recording the song.","How {title} came together."],
+ [5,"Lyric or drop moment","Post the line or drop people react to most, on screen with the audio.","This part right here. {title} on {plat}."],
+ [7,"Week one recap","Share a real reaction, a comment screenshot or a listener's story post.","One week of {title}. This is why I make music."],
+ [10,"Hook again, new angle","Repost the hook with a new visual: outside, in the car, or a fan video.","Still on repeat? {title}."],
+ [14,"Keep it alive","Ask a question tied to the song and invite people to use it in their own posts.","Use {title} in your next post and tag me. I'm reposting my favorites."]
+];
+function fmt(dt){return dt.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})}
+function esc(x){var e=document.createElement("div");e.textContent=x;return e.innerHTML}
+document.getElementById("f").addEventListener("submit",function(e){
+  e.preventDefault();
+  var t=document.getElementById("t").value.trim(), a=document.getElementById("a").value.trim(),
+      ds=document.getElementById("d").value, p=document.getElementById("p").value;
+  if(!t||!a||!ds) return;
+  var parts=ds.split("-"), rel=new Date(+parts[0],+parts[1]-1,+parts[2]);
+  var html="";
+  steps.forEach(function(s){
+    var day=new Date(rel); day.setDate(rel.getDate()+s[0]);
+    var label=s[0]===0?"Drop day":(s[0]<0?"Day "+s[0]:"Day +"+s[0]);
+    var cap=s[3].replace(/\{title\}/g,t).replace(/\{plat\}/g,p).replace(/\{date\}/g,fmt(rel));
+    html+='<div class="day"><div class="when">'+label+'<small>'+fmt(day)+'</small></div><div class="what"><b>'+esc(s[1])+'</b><p>'+esc(s[2])+'</p><div class="cap">'+esc(cap)+'</div><button class="copy" type="button">Copy caption</button></div></div>';
+  });
+  html+='<p class="note">Your custom campaign from us will build on this with your graphics, captions and full plan.</p>';
+  var box=document.getElementById("plan"); box.innerHTML=html; box.style.display="block";
+  box.scrollIntoView({behavior:"smooth",block:"start"});
+});
+document.getElementById("plan").addEventListener("click",function(e){
+  if(!e.target.classList.contains("copy")) return;
+  var txt=e.target.previousElementSibling.textContent;
+  try{navigator.clipboard.writeText(txt);e.target.textContent="Copied";setTimeout(function(){e.target.textContent="Copy caption"},1500)}catch(err){}
+});
+</script>
+</body>
+</html>
