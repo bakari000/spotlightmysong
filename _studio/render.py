@@ -149,10 +149,51 @@ def graphics(c, base, out):
 
 E = lambda s: html.escape(str(s))
 
+# Interactive plan tracker: each plan row is a checkbox the artist ticks off,
+# with a progress bar. Progress is kept in the viewer's browser per page.
+def sched_row(day, title, text):
+    return (f'<tr><td class="d"><label class="tick"><input type="checkbox" aria-label="Mark done: {E(title)}">'
+            f'<span>{E(day)}</span></label></td><td><b>{E(title)}</b>{E(text)}</td></tr>')
+
+PLAN_PROGRESS = ('<div class="prog"><div class="ptext"><span id="pcount">0 done</span><span id="pmsg">Tick each step off as you post it</span></div>'
+                 '<div class="bar"><i id="pbar"></i></div></div>')
+
+PLAN_CSS = """
+.prog{position:sticky;top:0;z-index:5;background:rgba(14,10,18,.95);backdrop-filter:blur(8px);padding:12px 0;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.ptext{display:flex;justify-content:space-between;gap:12px;font-size:14px;font-weight:600;color:var(--smoke)}
+.bar{height:8px;border-radius:99px;background:#2A2030;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--amber));transition:width .25s}
+.tick{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.tick input{appearance:none;flex:none;width:22px;height:22px;margin-top:2px;border-radius:6px;border:2px solid #6B5A73;display:grid;place-content:center;cursor:pointer}
+.tick input:checked{background:var(--amber);border-color:var(--amber)}
+.tick input:checked::after{content:"";width:5px;height:10px;border:solid #1B0F05;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.tick input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+tr:has(.tick input:checked) td b{text-decoration:line-through;text-decoration-color:rgba(255,196,107,.7)}
+tr:has(.tick input:checked) td{opacity:.75}
+.cycle{background:var(--card);border-radius:14px;padding:18px 20px;box-shadow:0 0 0 1px var(--line) inset}
+.cycle li{margin:10px 0}.cycle li b{color:#fff}
+"""
+
+PLAN_JS = """<script>(function(){var K='sms-plan-'+location.pathname;var bx=[].slice.call(document.querySelectorAll('.tick input'));if(!bx.length)return;var sv=[];try{sv=JSON.parse(localStorage.getItem(K)||'[]')}catch(e){}
+bx.forEach(function(b,i){if(sv[i])b.checked=true;b.addEventListener('change',up)});
+function up(){var d=bx.filter(function(b){return b.checked}).length,n=bx.length;document.getElementById('pcount').textContent=d+' of '+n+' done';document.getElementById('pbar').style.width=(d/n*100)+'%';
+document.getElementById('pmsg').textContent=d===0?'Tick each step off as you post it':d===n?'Campaign complete. Send us your numbers':d>n/2?'Past halfway. Stay on it':'You are rolling';
+try{localStorage.setItem(K,JSON.stringify(bx.map(function(b){return b.checked})))}catch(e){}}up()})();</script>"""
+
+# What a label does after the first two weeks. Same for every plan.
+NEXT_CYCLE = """<section><h2>After the two weeks</h2><p style="margin-bottom:14px">This is how labels keep an artist moving between drops. Do the same and every release starts stronger than the last.</p>
+<ol class="cycle">
+<li><b>Day 14: check your numbers.</b> In Spotify for Artists, look at listeners, saves and where they came from. Note which post brought people in.</li>
+<li><b>Weeks 3 to 6: keep the song alive.</b> Post two or three times a week using what worked. A song does not stop being new just because release week ended.</li>
+<li><b>Week 4: lock in the next drop.</b> Pick your next song and a Friday release date six to eight weeks out.</li>
+<li><b>Week 5: upload early.</b> Get the next song to your distributor three to four weeks before release so you can pitch it to Spotify's editors.</li>
+<li><b>Every drop: same playbook, better each time.</b> Releasing on a steady schedule is what builds a fanbase. One song rarely does it alone.</li>
+</ol></section>"""
+
 def page(c, cover_rel):
     plan = c['plan'].capitalize()
     rv = c.get('review', {})
-    sched = ''.join(f'<tr><td class="d">{E(r["day"])}</td><td><b>{E(r["title"])}</b>{E(r["text"])}</td></tr>' for r in c['schedule'])
+    sched = ''.join(sched_row(r["day"], r["title"], r["text"]) for r in c['schedule'])
     caps = ''.join(f'<div class="cap"><span>{E(x["label"])}</span><p>{E(x["text"])}</p><button class="copy" type="button">Copy</button></div>' for x in c['captions'])
     better = ''.join(f'<li>{E(b)}</li>' for b in rv.get('better', []))
     extras = ''
@@ -196,14 +237,15 @@ ul,ol{{padding-left:22px}} li{{margin:6px 0}}
 table{{width:100%;border-collapse:collapse}}
 td{{vertical-align:top;padding:14px 8px;border-top:1px solid var(--line);color:var(--smoke)}}
 td b{{display:block;color:#fff}}
-td.d{{width:120px;font-weight:800;color:var(--gold);white-space:nowrap}}
+td.d{{width:150px;font-weight:800;color:var(--gold);white-space:nowrap}}
 .cap{{background:var(--card);border-radius:12px;padding:14px 16px;margin-bottom:12px;box-shadow:0 0 0 1px var(--line) inset}}
 .cap span{{font-size:13px;font-weight:700;color:var(--gold)}}
 .cap p{{color:#fff;margin:4px 0}}
 .copy{{font:inherit;font-size:13px;font-weight:700;color:var(--gold);background:none;border:0;cursor:pointer;padding:2px 0}}
 footer{{margin-top:50px;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--smoke);font-size:15px}}
 footer a{{color:var(--gold)}}
-@media(max-width:640px){{.rev{{grid-template-columns:1fr}}.rev .covimg{{max-width:240px}}.gfx{{grid-template-columns:1fr}}td.d{{width:84px;white-space:normal}}}}
+{PLAN_CSS}
+@media(max-width:640px){{.rev{{grid-template-columns:1fr}}.rev .covimg{{max-width:240px}}.gfx{{grid-template-columns:1fr}}td.d{{width:112px;white-space:normal}}}}
 </style></head><body>
 <div class="wrap top"><a href="/">Spotlight My Song</a></div>
 <header><div class="wrap">
@@ -224,12 +266,14 @@ footer a{{color:var(--gold)}}
 <figure><img src="3_fans_of_post.jpg" alt=""><figcaption>Fans-of post, square</figcaption><a class="dl" href="3_fans_of_post.jpg" download>Download</a></figure>
 <figure><img src="2_story.jpg" alt=""><figcaption>Story. Put your link sticker over the play button.</figcaption><a class="dl" href="2_story.jpg" download>Download</a></figure>
 </div></section>
-<section><h2>{E(c.get("schedule_title","Your two week plan"))}</h2><p style="margin-bottom:12px">{E(c.get("schedule_intro",""))}</p><table>{sched}</table></section>
+<section><h2>{E(c.get("schedule_title","Your two week plan"))}</h2><p style="margin-bottom:12px">{E(c.get("schedule_intro",""))}</p>{PLAN_PROGRESS}<table>{sched}</table></section>
 <section><h2>Captions</h2>{caps}<h3>Hashtags</h3><p>{E(c.get("hashtags",""))}</p></section>
 {extras}{readiness}
+{NEXT_CYCLE}
 <footer>Questions? Just reply to the email this link came in.<br><a href="https://spotlightmysong.com">spotlightmysong.com</a></footer>
 </div>
 <script>document.addEventListener('click',function(e){{if(!e.target.classList.contains('copy'))return;var t=e.target.previousElementSibling.textContent;try{{navigator.clipboard.writeText(t);e.target.textContent='Copied';setTimeout(function(){{e.target.textContent='Copy'}},1500)}}catch(x){{}}}});</script>
+{PLAN_JS}
 </body></html>'''
 
 def pdf_from(html_path, pdf_path):
@@ -237,7 +281,7 @@ def pdf_from(html_path, pdf_path):
     with sync_playwright() as p:
         b = p.chromium.launch(); pg = b.new_page(viewport={'width': 900, 'height': 1200})
         pg.goto('file://' + str(html_path)); pg.wait_for_timeout(800)
-        pg.add_style_tag(content='.big,.dl,.copy{display:none!important} section{break-inside:auto} tr,.cap,figure{break-inside:avoid}')
+        pg.add_style_tag(content='.big,.dl,.copy,.prog{display:none!important} section{break-inside:auto} tr,.cap,figure{break-inside:avoid}')
         pg.pdf(path=str(pdf_path), format='Letter', print_background=True, margin={'top': '0.4in', 'bottom': '0.4in'})
         b.close()
 

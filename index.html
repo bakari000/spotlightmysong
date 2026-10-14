@@ -47,6 +47,10 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:7
 .logo{white-space:nowrap;display:flex;align-items:center;gap:10px;font-family:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
 .logo svg{width:26px;height:26px}
 .nav-link{font-weight:600;font-size:15px;padding:10px 18px;border-radius:999px;box-shadow:0 0 0 1px rgba(255,243,223,.3) inset}
+.nav-r{display:flex;align-items:center;gap:18px}
+.nav-text{font-weight:600;font-size:15px;color:var(--smoke)}
+.nav-text:hover{color:var(--cream)}
+@media(max-width:640px){.nav-text{display:none}}
 
 /* ===== HERO: the concert ===== */
 .hero{position:relative;min-height:100svh;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;isolation:isolate;
@@ -238,7 +242,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3DF"/><stop offset="1" stop-color="#FF9A2E"/></linearGradient></defs><circle cx="16" cy="5" r="4" fill="#FFC46B"/><path d="M13.5 8 L2 30 H30 L18.5 8 Z" fill="url(#lg)" opacity=".85"/></svg>
       Spotlight My Song
     </a>
-    <a href="#plans" class="nav-link">Plans</a>
+    <div class="nav-r"><a href="/checklist/" class="nav-text">Free release checklist</a><a href="#plans" class="nav-link">Plans</a></div>
   </div>
 </nav>
 
@@ -432,7 +436,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div class="beam" style="left:70%;--r:16deg;--r2:6deg;--d:8s" aria-hidden="true"></div>
   <div class="wrap">
     <h2 class="display h2">Stop dropping songs into silence</h2>
-    <a href="#plans" class="btn">Spotlight my song</a>
+    <div class="cta-row"><a href="#plans" class="btn">Spotlight my song</a><a href="/checklist/" class="btn line">Free release checklist</a></div>
   </div>
 </section>
 
