@@ -6,6 +6,14 @@
 <title>Spotlight My Song</title>
 <meta name="description" content="Promotion for independent artists and DJs. Cover art review, release plans, promo content and ad campaigns that get your music in front of real listeners.">
 <meta name="theme-color" content="#0E0A12">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://spotlightmysong.com/">
+<meta property="og:title" content="Spotlight My Song | Promotion for independent artists and DJs">
+<meta property="og:description" content="Cover art review, release plans, promo graphics and ad playbooks for your song. One payment, no fake streams.">
+<meta property="og:image" content="https://spotlightmysong.com/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -129,6 +137,12 @@ section{padding:110px 0}
   background:radial-gradient(closest-side,rgba(255,170,80,.16),transparent);pointer-events:none}
 .plans .wrap{position:relative}
 .plans-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.founding{margin:26px 0 6px;padding:18px 22px;border-radius:18px;background:linear-gradient(135deg,rgba(255,196,107,.16),rgba(232,84,127,.10));box-shadow:0 0 0 1px rgba(255,196,107,.45) inset;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.founding p{color:var(--cream);margin:0;flex:1;min-width:240px}
+.f-tag{font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:var(--tungsten);color:#1B0F05;padding:6px 12px;border-radius:99px}
+.founding .code{color:var(--tungsten);letter-spacing:.04em}
+.fprice{font-size:14px;font-weight:700;color:var(--tungsten);margin-top:2px}
+.ticket.vip .fprice{color:#7A2E00}
 .tickets{display:flex;flex-direction:column;gap:22px;margin-top:56px}
 .ticket{--paper:var(--night-3);--ink:var(--cream);--muted:var(--smoke);--perf:rgba(255,243,223,.18);
   position:relative;display:grid;grid-template-columns:1fr 250px;background:var(--paper);color:var(--ink);border-radius:22px;
@@ -340,6 +354,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <p class="sub">One song or DJ mix per plan. One-time payment. No hidden fees.</p>
       </div>
     </div>
+    <div class="founding" id="founding" hidden>
+      <span class="f-tag">Founding Artist special</span>
+      <p><b>The first 20 artists get 20% off any plan.</b> Your code <b class="code">FOUNDING20</b> is added at checkout automatically. When the 20 spots are gone, it's gone.</p>
+    </div>
 
     <div class="tickets">
       <article class="ticket">
@@ -442,8 +460,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Spotlight My Song</span>
-    <span>Promotion for independent artists and DJs</span>
+    <span>© 2026 Spotlight My Song · Promotion for independent artists and DJs</span>
+    <span><a href="mailto:spotlightmysongofficial@gmail.com">spotlightmysongofficial@gmail.com</a> · <a href="/checklist/">Free checklist</a> · <a href="/terms/">Terms and privacy</a></span>
   </div>
 </footer>
 
@@ -451,6 +469,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <script>
 /* Paste each plan's payment link between the quotes when ready. */
+/* Founding Artist special. Set on:false when the 20 spots are gone. */
+var FOUNDING = { on: true, code: "FOUNDING20", off: 0.20 };
+
 var PAY_LINKS = {
   starter: "https://buy.stripe.com/28E28qdlX9ce2O96oC2ZO02",
   boost: "https://buy.stripe.com/dRmcN4a9Lbkm0G17sG2ZO01",
@@ -459,7 +480,19 @@ var PAY_LINKS = {
 
 document.querySelectorAll("[data-plan]").forEach(function(btn){
   var url = PAY_LINKS[btn.getAttribute("data-plan")];
-  if (url) { btn.href = url; return; }
+  if (url) {
+    if (FOUNDING.on) {
+      url += (url.indexOf("?") < 0 ? "?" : "&") + "prefilled_promo_code=" + FOUNDING.code;
+      var pr = btn.parentNode.querySelector(".price");
+      if (pr && !btn.parentNode.querySelector(".fprice")) {
+        var full = parseFloat(pr.textContent.replace(/[^0-9.]/g, ""));
+        var d = document.createElement("span"); d.className = "fprice";
+        d.textContent = "$" + (full * (1 - FOUNDING.off)).toFixed(2) + " for founding artists";
+        pr.insertAdjacentElement("afterend", d);
+      }
+    }
+    btn.href = url; return;
+  }
   btn.addEventListener("click", function(e){
     e.preventDefault();
     var t = document.getElementById("toast");
@@ -467,6 +500,8 @@ document.querySelectorAll("[data-plan]").forEach(function(btn){
     clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove("show"); }, 2600);
   });
 });
+
+if (FOUNDING.on) { document.getElementById("founding").hidden = false; }
 
 /* Crowd silhouette */
 (function(){
