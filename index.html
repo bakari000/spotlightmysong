@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="darkreader-lock">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spotlight My Song</title>
 <meta name="description" content="Promotion for independent artists and DJs. Cover art review, release plans, promo content and ad campaigns that get your music in front of real listeners.">
@@ -173,6 +176,18 @@ section{padding:110px 0}
 .ticket.vip .pitch,.ticket.vip .admit,.ticket.vip .once{color:#4A2A08}
 .ticket.vip .main,.ticket.vip .stub{position:relative;z-index:1}
 .ticket.vip li::before{opacity:.22}
+/* Keep dark-on-gold text dark even when a browser night mode rewrites colors */
+:root{color-scheme:dark}
+.btn:not(.line){-webkit-text-fill-color:#1B0F05}
+.f-tag{-webkit-text-fill-color:#1B0F05}
+.ticket.vip h3,.ticket.vip li,.ticket.vip .price,.ticket.vip .price sup{-webkit-text-fill-color:#1B0F05}
+.ticket.vip .pitch,.ticket.vip .admit,.ticket.vip .once{-webkit-text-fill-color:#4A2A08}
+.ticket.vip .fprice{-webkit-text-fill-color:#7A2E00}
+.ticket.vip .tag{-webkit-text-fill-color:var(--tungsten)}
+.ticket.vip .btn{-webkit-text-fill-color:currentColor}
+.ticket.vip li::before{background:#1B0F05!important}
+.ticket.vip li::after{border-color:#1B0F05!important}
+
 .ticket.vip .btn{background:#1B0F05;color:#FFE1A6;box-shadow:none}
 .ticket.vip .btn:hover{box-shadow:0 10px 30px rgba(27,15,5,.35)}
 .ticket.vip::after{content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;z-index:0;

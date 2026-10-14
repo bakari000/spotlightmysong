@@ -159,6 +159,8 @@ PLAN_PROGRESS = ('<div class="prog"><div class="ptext"><span id="pcount">0 done<
                  '<div class="bar"><i id="pbar"></i></div></div>')
 
 PLAN_CSS = """
+:root{color-scheme:dark}
+.pill,.dl,.big{-webkit-text-fill-color:#1B0F05}
 .prog{position:sticky;top:0;z-index:5;background:rgba(14,10,18,.95);backdrop-filter:blur(8px);padding:12px 0;margin-bottom:6px;border-bottom:1px solid var(--line)}
 .ptext{display:flex;justify-content:space-between;gap:12px;font-size:14px;font-weight:600;color:var(--smoke)}
 .bar{height:8px;border-radius:99px;background:#2A2030;overflow:hidden;margin-top:6px}
@@ -204,7 +206,7 @@ def page(c, cover_rel):
         extras += f'<section><h2>{E(x["heading"])}</h2>{body}</section>'
     readiness = f'<section><h2>Streaming readiness check</h2><p>{E(c["readiness"])}</p></section>' if c.get('readiness') else ''
     cover_img = f'<img class="covimg" src="{cover_rel}" alt="">' if cover_rel else ''
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="dark"><meta name="darkreader-lock">
 <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">
 <title>{E(c["artist"])} – {E(c["title"])} | Spotlight My Song</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
