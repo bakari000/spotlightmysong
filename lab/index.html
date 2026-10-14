@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="darkreader-lock">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release Lab | Spotlight My Song</title>
+<meta name="description" content="Free tools for independent artists. Scan your song's loudness and clipping, find your best 15 seconds, check your cover art and plan your release dates.">
+<meta name="theme-color" content="#0E0A12">
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://spotlightmysong.com/lab/">
+<meta property="og:title" content="Release Lab: free song and cover scanner">
+<meta property="og:description" content="Drop your song and cover. Get your loudness, clipping, best 15 seconds and release dates in seconds. Free.">
+<meta property="og:image" content="https://spotlightmysong.com/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--night:#0E0A12;--night-2:#18111E;--card:#1B1420;--line:#33283B;--cream:#FFF3DF;--smoke:#D9CFDC;--dim:#9C8FA3;--gold:#FFC46B;--amber:#FF9A2E;--good:#7EE0A1;--warn:#FFC46B;--bad:#FF7A6B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--night);color:var(--cream);font-family:Figtree,system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+.display{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;text-transform:uppercase;line-height:.92}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:800;font-size:21px;text-transform:uppercase;letter-spacing:.02em;text-decoration:none}
+.nav-link{font-weight:600;font-size:15px;padding:9px 16px;border-radius:999px;box-shadow:0 0 0 1px rgba(255,243,223,.3) inset;text-decoration:none}
+
+/* hero with a scanning grid */
+header{position:relative;padding:44px 0 34px;overflow:hidden}
+header::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(rgba(255,196,107,.07) 1px,transparent 1px) 0 0/100% 32px,linear-gradient(90deg,rgba(255,196,107,.07) 1px,transparent 1px) 0 0/32px 100%;
+  -webkit-mask-image:radial-gradient(70% 90% at 50% 0%,#000,transparent 75%);mask-image:radial-gradient(70% 90% at 50% 0%,#000,transparent 75%)}
+header::after{content:"";position:absolute;left:0;right:0;height:2px;top:0;z-index:-1;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6;animation:sweep 5s linear infinite}
+@keyframes sweep{from{top:0}to{top:100%}}
+@media (prefers-reduced-motion:reduce){header::after{animation:none;display:none}}
+.kicker{color:var(--gold);font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+h1{font-size:clamp(54px,12vw,100px);margin:10px 0 14px}
+.lede{color:var(--smoke);font-size:19px;max-width:42ch}
+.private{display:inline-flex;gap:8px;align-items:center;margin-top:18px;font-size:14px;color:var(--good);padding:6px 12px;border-radius:99px;box-shadow:0 0 0 1px rgba(126,224,161,.35) inset}
+.private i{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 10px var(--good)}
+
+.mod{margin:30px 0;border-radius:22px;background:linear-gradient(180deg,#1C1422,#140E19);box-shadow:0 0 0 1px var(--line) inset;padding:24px 20px}
+.mod-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.mod-head .n{color:var(--gold);font-size:14px}
+.mod h2{font-size:clamp(34px,7vw,46px)}
+.mod .sub{color:var(--smoke);margin-bottom:16px;max-width:58ch}
+
+.drop{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:150px;border-radius:16px;cursor:pointer;
+  border:2px dashed rgba(255,196,107,.4);background:rgba(255,196,107,.04);padding:20px;transition:background .2s,border-color .2s}
+.drop:hover,.drop.over{background:rgba(255,196,107,.09);border-color:var(--gold)}
+.drop b{font-size:18px}
+.drop span{color:var(--dim);font-size:14px}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.status{margin-top:12px;color:var(--gold);font-size:14px;min-height:20px}
+
+.wave{position:relative;margin-top:18px;border-radius:14px;overflow:hidden;background:#0B080E;box-shadow:0 0 0 1px var(--line) inset}
+.wave canvas{display:block;width:100%;height:120px}
+.wave .lbl{position:absolute;left:10px;top:8px;font-size:12px;color:var(--dim)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+.stat{background:#120D16;border-radius:14px;padding:14px 16px;box-shadow:0 0 0 1px var(--line) inset}
+.stat .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.stat .v{font-size:28px;font-weight:700;margin:2px 0}
+.stat .note{font-size:14px;color:var(--smoke);line-height:1.45}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:2px}
+.good{background:var(--good);box-shadow:0 0 8px var(--good)}.warn{background:var(--warn);box-shadow:0 0 8px var(--warn)}.bad{background:var(--bad);box-shadow:0 0 8px var(--bad)}
+
+.hook{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:linear-gradient(135deg,rgba(255,196,107,.14),rgba(255,154,46,.06));border-radius:14px;padding:14px 16px;box-shadow:0 0 0 1px rgba(255,196,107,.4) inset}
+.hook p{flex:1;min-width:220px;color:var(--cream);font-size:15px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:15px;padding:12px 22px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;
+  background:linear-gradient(135deg,#FFE0A3,var(--gold) 35%,var(--amber));color:#1B0F05;-webkit-text-fill-color:#1B0F05}
+.btn.line{background:transparent;color:var(--cream);-webkit-text-fill-color:var(--cream);box-shadow:0 0 0 1px rgba(255,243,223,.3) inset}
+
+.cov{display:grid;grid-template-columns:200px 1fr;gap:18px;margin-top:18px;align-items:start}
+.cov .big{width:100%;border-radius:10px;display:block}
+.thumbs{display:flex;gap:16px;align-items:flex-end;margin:14px 0 4px;flex-wrap:wrap}
+.thumbs figure{text-align:center}
+.thumbs img{display:block;border-radius:4px;margin:0 auto;object-fit:cover}
+.thumbs figcaption{font-size:12px;color:var(--dim);margin-top:6px}
+.checks{list-style:none}
+.checks li{padding:8px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--smoke)}
+.checks li b{color:var(--cream)}
+
+.plan-in{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.plan-in input{font:inherit;color:var(--cream);background:#120D16;border:1px solid var(--line);border-radius:12px;padding:12px 14px;color-scheme:dark}
+.tl{list-style:none;margin-top:20px;position:relative}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),rgba(255,196,107,.1))}
+.tl li{position:relative;padding:0 0 18px 32px}
+.tl li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--night);box-shadow:0 0 0 2px var(--gold) inset}
+.tl li.past::before{background:#3A2E40;box-shadow:0 0 0 2px #5A4A62 inset}
+.tl li.today::before{background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.tl .d{font-size:13px;color:var(--gold)}
+.tl li.past .d{color:var(--dim)}
+.tl b{display:block}
+.tl span{color:var(--smoke);font-size:15px}
+.alert{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(255,122,107,.1);box-shadow:0 0 0 1px rgba(255,122,107,.4) inset;font-size:15px}
+
+.cta{margin:40px 0 30px;padding:28px 22px;border-radius:20px;background:linear-gradient(160deg,#2A1A22,#1A1120);border:1px solid #4A3340;text-align:center}
+.cta h2{font-size:clamp(32px,7vw,44px);margin-bottom:10px}
+.cta p{color:var(--smoke);max-width:46ch;margin:0 auto 18px}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--dim);font-size:14px}
+[hidden]{display:none!important}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.cov{grid-template-columns:1fr}.cov .big{max-width:220px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a href="/" class="logo">Spotlight My Song</a>
+  <a href="/#plans" class="nav-link">Plans</a>
+</nav>
+</div>
+
+<header>
+  <div class="wrap">
+    <div class="kicker mono">Free tools · v1.0</div>
+    <h1 class="display">Release Lab</h1>
+    <p class="lede">Scan your song before the world hears it. Loudness, clipping, your best 15 seconds, a cover check and your release dates, all in seconds.</p>
+    <div class="private"><i></i>Your files never leave your phone. Nothing is uploaded.</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 01 SOUND CHECK -->
+<section class="mod" id="sound">
+  <div class="mod-head"><span class="n mono">01</span><h2 class="display">Sound check</h2></div>
+  <p class="sub">Drop your MP3 or WAV. We measure it the way streaming services do, check for clipping and find the 15 seconds most likely to grab someone.</p>
+  <label class="drop" id="aDrop">
+    <input type="file" id="aFile" accept="audio/*,.mp3,.wav,.m4a,.aac,.flac">
+    <b>Tap to choose your song</b><span>or drag it here · MP3, WAV, M4A</span>
+  </label>
+  <div class="status mono" id="aStatus" role="status"></div>
+  <div id="aOut" hidden>
+    <div class="wave"><canvas id="wave"></canvas><span class="lbl mono" id="waveLbl"></span></div>
+    <div class="hook">
+      <p><b>Your hook clip:</b> <span id="hookTxt"></span></p>
+      <button class="btn" type="button" id="hookPlay">▶ Play the 15 seconds</button>
+    </div>
+    <div class="grid" id="aStats"></div>
+  </div>
+</section>
+
+<!-- 02 COVER CHECK -->
+<section class="mod" id="cover">
+  <div class="mod-head"><span class="n mono">02</span><h2 class="display">Cover check</h2></div>
+  <p class="sub">Drop your cover art. See it the size fans actually see it, and check it against what Spotify and Apple Music accept.</p>
+  <label class="drop" id="cDrop">
+    <input type="file" id="cFile" accept="image/*">
+    <b>Tap to choose your cover</b><span>or drag it here · JPG or PNG</span>
+  </label>
+  <div class="status mono" id="cStatus" role="status"></div>
+  <div id="cOut" hidden>
+    <div class="cov">
+      <img class="big" id="cBig" alt="Your cover">
+      <div>
+        <div class="thumbs">
+          <figure><img id="t1" width="160" height="160" alt=""><figcaption>Playlist view</figcaption></figure>
+          <figure><img id="t2" width="64" height="64" alt=""><figcaption>Search results</figcaption></figure>
+          <figure><img id="t3" width="40" height="40" alt=""><figcaption>Now playing bar</figcaption></figure>
+        </div>
+        <ul class="checks" id="cChecks"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 RELEASE PLANNER -->
+<section class="mod" id="planner">
+  <div class="mod-head"><span class="n mono">03</span><h2 class="display">Release planner</h2></div>
+  <p class="sub">Pick your release date. Get every deadline that matters, then add them all to your phone's calendar in one tap.</p>
+  <div class="plan-in">
+    <input type="date" id="rDate" aria-label="Release date">
+    <button class="btn line" type="button" id="icsBtn">Add all to my calendar</button>
+  </div>
+  <div id="rAlert"></div>
+  <ol class="tl" id="tl"></ol>
+</section>
+
+<div class="cta">
+  <h2 class="display">Want the whole rollout built?</h2>
+  <p>We take what the lab found and build your two week plan, promo graphics, captions and hook clip, made for your song.</p>
+  <a class="btn" href="/#plans">See the plans</a>
+  <a class="btn line" href="/checklist/">Free release checklist</a>
+</div>
+</main>
+
+<footer><div class="wrap">© 2026 Spotlight My Song · <a href="/">spotlightmysong.com</a> · <a href="/terms/">Terms and privacy</a></div></footer>
+
+<script>
+(function(){
+/* ---------- helpers ---------- */
+function $(id){return document.getElementById(id)}
+function fmtT(s){s=Math.max(0,s);var m=Math.floor(s/60),x=Math.floor(s%60);return m+":"+(x<10?"0":"")+x}
+function db(x){return 20*Math.log10(Math.max(x,1e-9))}
+function stat(k,v,cls,note){return '<div class="stat"><div class="k mono">'+k+'</div><div class="v"><span class="dot '+cls+'"></span>'+v+'</div><div class="note">'+note+'</div></div>'}
+function dropify(label,input){
+  ["dragenter","dragover"].forEach(function(e){label.addEventListener(e,function(ev){ev.preventDefault();label.classList.add("over")})});
+  ["dragleave","drop"].forEach(function(e){label.addEventListener(e,function(ev){ev.preventDefault();label.classList.remove("over")})});
+  label.addEventListener("drop",function(ev){var f=ev.dataTransfer&&ev.dataTransfer.files[0];if(f){input._file=f;input.dispatchEvent(new Event("change"))}});
+}
+
+/* ---------- 01 SOUND CHECK ---------- */
+var buf=null, hookStart=0, player=null, playing=null;
+dropify($("aDrop"),$("aFile"));
+$("aFile").addEventListener("change",function(){
+  var f=this._file||this.files[0]; this._file=null; if(!f)return;
+  $("aOut").hidden=true; $("aStatus").textContent="Reading "+f.name+" ...";
+  var rd=new FileReader();
+  rd.onload=function(){
+    var bytes=rd.result, info=wavInfo(bytes);
+    $("aStatus").textContent="Decoding audio ...";
+    var OAC=window.OfflineAudioContext||window.webkitOfflineAudioContext;
+    var ctx=new OAC(2,48000,48000);
+    var done=function(b){ $("aStatus").textContent="Scanning ..."; setTimeout(function(){ try{analyze(b,f,info,bytes)}catch(e){fail()} },30) };
+    var fail=function(){ $("aStatus").textContent="Couldn't read that file. Try an MP3 or WAV." };
+    try{ var p=ctx.decodeAudioData(bytes.slice(0),done,fail); if(p&&p.catch)p.catch(fail) }catch(e){fail()}
+  };
+  rd.readAsArrayBuffer(f);
+});
+
+function wavInfo(ab){
+  try{
+    var v=new DataView(ab); if(v.getUint32(0,false)!==0x52494646||v.getUint32(8,false)!==0x57415645)return null;
+    var info=null, o=12; while(o<v.byteLength-8){var id=v.getUint32(o,false),sz=v.getUint32(o+4,true);
+      if(id===0x666d7420){info={fmt:v.getUint16(o+8,true),rate:v.getUint32(o+12,true),bits:v.getUint16(o+22,true),ch:v.getUint16(o+10,true)}}
+      if(id===0x64617461&&info){info.off=o+8;info.size=Math.min(sz,v.byteLength-o-8);return info}
+      o+=8+sz+(sz%2);}
+    return info||null;
+  }catch(e){} return null;
+}
+
+function analyze(b,f,info,bytes){
+  buf=b; var sr=b.sampleRate, n=b.length, chs=[];
+  for(var c=0;c<Math.min(2,b.numberOfChannels);c++)chs.push(b.getChannelData(c));
+  /* peak, clipping, leading silence */
+  var peak=0, clips=[], run=0, lastClip=-1e9, lead=-1, thr=Math.pow(10,-60/20);
+  for(var i=0;i<n;i++){
+    var m=0; for(var c2=0;c2<chs.length;c2++){var a=Math.abs(chs[c2][i]); if(a>m)m=a}
+    if(m>peak)peak=m;
+    if(lead<0&&m>thr)lead=i;
+    if(m>=0.985){run++; if(run===8&&i-lastClip>sr*0.05){clips.push(i/sr)} if(run>=8)lastClip=i}else if(m<0.95)run=0;
+  }
+  if(lead<0)lead=0;
+  /* WAV: check the original samples, exact */
+  if(info&&info.fmt===1&&(info.bits===16||info.bits===24)&&info.off){
+    var v=new DataView(bytes), bps=info.bits/8, fr=bps*info.ch, nf=Math.floor(info.size/fr), full=info.bits===16?32767:8388607;
+    clips=[]; peak=0; var runs=new Array(info.ch).fill(0), last=-1e9;
+    for(var q=0;q<nf;q++){ for(var ch=0;ch<info.ch;ch++){ var off=info.off+q*fr+ch*bps, sv;
+        if(bps===2)sv=v.getInt16(off,true); else {sv=v.getUint8(off)|(v.getUint8(off+1)<<8)|(v.getInt8(off+2)<<16)}
+        var av=Math.abs(sv); if(av>peak)peak=av;
+        if(av>=full){runs[ch]++; if(runs[ch]===3&&q-last>info.rate*0.05){clips.push(q/info.rate)} if(runs[ch]>=3)last=q}else runs[ch]=0; } }
+    peak=peak/full;
+  }
+  /* K-weighting (ITU BS.1770, 48 kHz) + 400 ms blocks every 100 ms */
+  var step=sr/10|0, nb=Math.floor(n/step), blockE=new Float64Array(nb);
+  for(var c3=0;c3<chs.length;c3++){
+    var x=chs[c3], x1=0,x2=0,y1=0,y2=0, z1=0,z2=0,w1=0,w2=0, acc=0, k=0, cnt=0;
+    for(var j=0;j<n;j++){
+      var xi=x[j];
+      var y=1.53512485958697*xi-2.69169618940638*x1+1.19839281085285*x2+1.69065929318241*y1-0.73248077421585*y2;
+      x2=x1;x1=xi;y2=y1;y1=y;
+      var w=y-2*z1+z2+1.99004745483398*w1-0.99007225036621*w2;
+      z2=z1;z1=y;w2=w1;w1=w;
+      acc+=w*w; cnt++;
+      if(cnt===step){ if(k<nb)blockE[k]+=acc/step; k++; acc=0; cnt=0 }
+    }
+  }
+  /* 400 ms gating blocks = 4 sub blocks */
+  var gb=[]; for(var q=0;q+3<nb;q++){gb.push((blockE[q]+blockE[q+1]+blockE[q+2]+blockE[q+3])/4)}
+  function L(e){return -0.691+10*Math.log10(Math.max(e,1e-12))}
+  var abs=gb.filter(function(e){return L(e)>-70}), mean=abs.reduce(function(s,e){return s+e},0)/Math.max(1,abs.length);
+  var rel=L(mean)-10, gated=abs.filter(function(e){return L(e)>rel});
+  var lufs=L(gated.reduce(function(s,e){return s+e},0)/Math.max(1,gated.length));
+  /* hook: 15 s window with the most energy, skipping the first 5 s */
+  var W=150, best=-1, bi=0, sum=0, startMin=Math.min(50,Math.max(0,nb-W));
+  if(nb<=W){bi=0}else{
+    for(var r=0;r<nb;r++){ sum+=blockE[r]; if(r>=W)sum-=blockE[r-W];
+      if(r>=W-1){var s0=r-W+1; if(s0>=startMin&&sum>best){best=sum;bi=s0}} }
+  }
+  hookStart=bi/10;
+  draw(chs,n,sr,hookStart,Math.min(15,n/sr));
+  /* report */
+  var dur=n/sr, pk=db(peak), sh=-14-lufs, out="";
+  var lc, ln;
+  if(lufs>-7){lc="bad";ln="Very loud. It is likely squashed. Spotify will turn it down about "+Math.abs(sh).toFixed(1)+" dB, so mastering this hot only costs you punch."}
+  else if(lufs>-16){lc="good";ln="In a healthy range for streaming. Spotify plays songs at about -14, so this will be turned "+(sh<0?"down "+Math.abs(sh).toFixed(1):"up about "+sh.toFixed(1))+" dB."}
+  else if(lufs>-20){lc="warn";ln="On the quiet side. It may sound weaker than the songs around it on a playlist."}
+  else {lc="bad";ln="Quiet. Next to other songs it will feel low energy. Worth a louder master."}
+  out+=stat("Loudness",lufs.toFixed(1)+" LUFS",lc,ln);
+  out+=stat("Peak",(pk>0?"+":"")+pk.toFixed(1)+" dBFS",pk>-0.3?"warn":"good",pk>0.1?"Goes over the ceiling. Bring the master down so it peaks about 1 dB under, or it will crackle after streaming services convert it.":pk>-0.3?"Touching the ceiling. Leave about 1 dB of room so it doesn't crackle after streaming services convert it.":"Has room under the ceiling. Good.");
+  if(!clips.length&&!info&&pk>0.1){out+=stat("Clipping","Likely","warn","This file goes over the ceiling at its loudest, which usually means clipping. Scan the WAV to pinpoint it.")}else
+  out+=stat("Clipping",clips.length?clips.length+" spot"+(clips.length>1?"s":""):"None found",clips.length?(clips.length>5?"bad":"warn"):"good",
+    clips.length?"Listen closely at "+clips.slice(0,4).map(fmtT).join(", ")+(clips.length>4?" and more":"")+". Clipping sounds like a crackle on loud hits.":"No flat-topped peaks. Clean.");
+  var st=lead/sr;
+  out+=stat("Starts at",st<0.05?"Right away":st.toFixed(1)+" s",st>1.5?"warn":"good",st>1.5?"There's "+st.toFixed(1)+" seconds of silence before the song. Trim it so listeners hear sound instantly.":"No dead air at the start. Good.");
+  var fmtNote, fmtCls="good", fmtV;
+  if(info){fmtV=(info.rate/1000)+" kHz · "+info.bits+" bit";
+    if(info.rate<44100||info.bits<16){fmtCls="bad";fmtNote="Below what distributors accept. Export at 44.1 kHz, 16 or 24 bit."}
+    else fmtNote="WAV at distributor quality. This is the file to upload.";}
+  else {var kb=Math.round(f.size*8/dur/1000); fmtV=(f.name.split(".").pop()||"").toUpperCase()+" · ~"+kb+" kbps";
+    if(kb<256){fmtCls="warn";fmtNote="Compressed file. Upload a WAV to your distributor if you have one."}
+    else fmtNote="High quality compressed file. A WAV is still best for distributors.";}
+  out+=stat("File",fmtV,fmtCls,fmtNote);
+  out+=stat("Length",fmtT(dur),"good",dur<90?"Short songs do well on replays. Make every second count.":dur>300?"Long for a single. Consider a radio edit under 4 minutes.":"Solid single length.");
+  $("aStats").innerHTML=out;
+  $("hookTxt").textContent=fmtT(hookStart)+" to "+fmtT(hookStart+15)+". This is the most energetic stretch of the song, a strong starting point for your Reels, TikToks and Spotify Canvas.";
+  $("waveLbl").textContent=f.name+" · "+fmtT(dur);
+  $("aStatus").textContent="Scan complete."; $("aOut").hidden=false;
+}
+
+function draw(chs,n,sr,hs,hl){
+  var cv=$("wave"), dpr=window.devicePixelRatio||1, W=cv.clientWidth||800, H=120;
+  cv.width=W*dpr; cv.height=H*dpr; var g=cv.getContext("2d"); g.scale(dpr,dpr); g.clearRect(0,0,W,H);
+  var x0=hs/(n/sr)*W, x1=(hs+hl)/(n/sr)*W;
+  g.fillStyle="rgba(255,196,107,.12)"; g.fillRect(x0,0,x1-x0,H);
+  g.fillStyle="rgba(255,196,107,.9)"; g.fillRect(x0,0,2,H); g.fillRect(x1-2,0,2,H);
+  var per=Math.max(1,Math.floor(n/W)), mid=H/2;
+  for(var px=0;px<W;px++){
+    var m=0, s=px*per, e=Math.min(n,s+per);
+    for(var i=s;i<e;i+=4){var a=Math.abs(chs[0][i]); if(a>m)m=a}
+    var h=Math.max(1,m*(H/2-10));
+    g.fillStyle=(px>=x0&&px<=x1)?"#FFC46B":"rgba(217,207,220,.45)";
+    g.fillRect(px,mid-h,1,h*2);
+  }
+}
+
+$("hookPlay").addEventListener("click",function(){
+  if(!buf)return;
+  if(playing){try{playing.stop()}catch(e){} playing=null; this.textContent="▶ Play the 15 seconds"; return}
+  var AC=window.AudioContext||window.webkitAudioContext; player=player||new AC();
+  var src=player.createBufferSource(); src.buffer=buf; src.connect(player.destination);
+  src.start(0,hookStart,15); playing=src; var btn=this; btn.textContent="■ Stop";
+  src.onended=function(){ if(playing===src){playing=null; btn.textContent="▶ Play the 15 seconds"} };
+});
+
+/* ---------- 02 COVER CHECK ---------- */
+dropify($("cDrop"),$("cFile"));
+$("cFile").addEventListener("change",function(){
+  var f=this._file||this.files[0]; this._file=null; if(!f)return;
+  $("cStatus").textContent="Checking "+f.name+" ...";
+  var url=URL.createObjectURL(f), im=new Image();
+  im.onload=function(){
+    var w=im.naturalWidth,h=im.naturalHeight;
+    ["cBig","t1","t2","t3"].forEach(function(id){$(id).src=url});
+    /* contrast at thumbnail size */
+    var c=document.createElement("canvas"); c.width=c.height=64; var g=c.getContext("2d");
+    var s=Math.min(w,h); g.drawImage(im,(w-s)/2,(h-s)/2,s,s,0,0,64,64);
+    var d=g.getImageData(0,0,64,64).data, sum=0, sq=0, N=64*64;
+    for(var i=0;i<d.length;i+=4){var l=(0.2126*d[i]+0.7152*d[i+1]+0.0722*d[i+2])/255; sum+=l; sq+=l*l}
+    var mean=sum/N, sd=Math.sqrt(Math.max(0,sq/N-mean*mean));
+    var li=[];
+    function row(cls,t,b){li.push('<li><span class="dot '+cls+'"></span><b>'+t+'</b> '+b+'</li>')}
+    row(w===h?"good":"bad", w===h?"Square.":"Not square ("+w+" × "+h+").", w===h?"Exactly what stores need.":"Stores need a perfect square or they reject it. Crop it to 1:1.");
+    if(Math.min(w,h)>=3000) row("good","Full size.", w+" × "+h+" pixels. Meets the 3000 × 3000 standard.");
+    else if(Math.min(w,h)>=1600) row("warn","A bit small.", w+" × "+h+". Some stores accept it, but 3000 × 3000 is the safe standard.");
+    else row("bad","Too small.", w+" × "+h+". Most distributors need at least 1600, and 3000 × 3000 is the standard. Re-export it bigger from the original.");
+    var type=(f.type||"").replace("image/","").toUpperCase();
+    row(/JPE?G|PNG/.test(type)?"good":"warn", (type||"Unknown")+" file.", /JPE?G|PNG/.test(type)?"Accepted everywhere.":"Save it as a JPG or PNG before uploading.");
+    row(sd>0.16?"good":sd>0.1?"warn":"bad", sd>0.16?"Strong contrast.":"Low contrast at small size.", sd>0.16?"It still pops as a tiny thumbnail.":"Look at the 40 pixel version. If it turns into a blur, add contrast between your subject and the background.");
+    row("warn","Final eye check.","No website links, social handles or brand logos on the cover. Stores reject those.");
+    $("cChecks").innerHTML=li.join("");
+    $("cStatus").textContent="Check complete."; $("cOut").hidden=false;
+  };
+  im.onerror=function(){$("cStatus").textContent="Couldn't open that image. Try a JPG or PNG."};
+  im.src=url;
+});
+
+/* ---------- 03 RELEASE PLANNER ---------- */
+var STEPS=[
+  [-35,"Lock the final master and cover","Final mix, final master, final 3000 × 3000 cover. Run them through the lab above."],
+  [-28,"Upload to your distributor","Upload now so the song is in Spotify for Artists in time to pitch."],
+  [-21,"Pitch to Spotify's editors","In Spotify for Artists, on your upcoming release. Earlier is better, it must be at least 7 days before release."],
+  [-14,"Announce the date","Post the cover, the title and the date. Put your pre-save link in your bio."],
+  [-7,"Drop the teaser","Post your hook clip. Start the countdown on your stories."],
+  [-3,"Upload your Spotify Canvas","The 3 to 8 second loop that plays behind your song."],
+  [0,"Release day","Post it everywhere with the link. Ask for saves, not just plays."],
+  [3,"Send it to curators and pages","Playlisters, blogs and repost pages in your scene. Personal messages only."],
+  [7,"Post a second angle on the hook","Different visual, same 15 seconds. Thank everyone who shared it."],
+  [14,"Check your numbers","Listeners, saves, where they came from. Plan the next drop."]
+];
+function nextFriday(minDays){var d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+minDays);while(d.getDay()!==5)d.setDate(d.getDate()+1);return d}
+function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function pretty(d){return d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}
+$("rDate").value=iso(nextFriday(35));
+function plan(){
+  var v=$("rDate").value; if(!v)return; var p=v.split("-"), rel=new Date(+p[0],+p[1]-1,+p[2],12);
+  var today=new Date(); today.setHours(12,0,0,0);
+  var days=Math.round((rel-today)/864e5), html="", alert="";
+  if(rel.getDay()!==5) alert+="New music drops on Fridays. That's when playlists update and fans are looking. Consider moving it to "+pretty(nextFridayFrom(rel))+". ";
+  if(days<7&&days>=0) alert+="Under 7 days out, it's too late to pitch Spotify's editors for this one. Everything else still counts. ";
+  else if(days<28&&days>=7) alert+="Upload to your distributor today. It can take days to reach Spotify for Artists, and you need it there to pitch. ";
+  $("rAlert").innerHTML=alert?'<div class="alert">'+alert+'</div>':"";
+  STEPS.forEach(function(s){
+    var d=new Date(rel); d.setDate(d.getDate()+s[0]); var diff=Math.round((d-today)/864e5);
+    var cls=diff<0?"past":diff===0?"today":"";
+    html+='<li class="'+cls+'"><div class="d mono">'+pretty(d)+(diff===0?" · today":s[0]===0?" · release":"")+'</div><b>'+s[1]+'</b><span>'+s[2]+'</span></li>';
+  });
+  $("tl").innerHTML=html;
+}
+function nextFridayFrom(d){var x=new Date(d);while(x.getDay()!==5)x.setDate(x.getDate()+1);return x}
+$("rDate").addEventListener("change",plan); plan();
+$("icsBtn").addEventListener("click",function(){
+  var v=$("rDate").value; if(!v)return; var p=v.split("-"), rel=new Date(+p[0],+p[1]-1,+p[2],12);
+  function ymd(d){return iso(d).replace(/-/g,"")}
+  var L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Spotlight My Song//Release Lab//EN","CALSCALE:GREGORIAN"];
+  var stamp=new Date().toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
+  STEPS.forEach(function(s,i){
+    var d=new Date(rel); d.setDate(d.getDate()+s[0]); var e=new Date(d); e.setDate(e.getDate()+1);
+    L.push("BEGIN:VEVENT","UID:sms-"+ymd(rel)+"-"+i+"@spotlightmysong.com","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+ymd(d),"DTEND;VALUE=DATE:"+ymd(e),
+      "SUMMARY:"+s[1].replace(/[,;]/g,"\\$&"),"DESCRIPTION:"+(s[2]+" spotlightmysong.com/lab").replace(/[,;]/g,"\\$&"),"END:VEVENT");
+  });
+  L.push("END:VCALENDAR");
+  var blob=new Blob([L.join("\r\n")],{type:"text/calendar"}), a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="release-plan.ics"; document.body.appendChild(a); a.click(); a.remove();
+});
+})();
+</script>
+</body>
+</html>
