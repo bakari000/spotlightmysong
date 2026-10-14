@@ -151,9 +151,13 @@ section{padding:110px 0}
 /* the VIP ticket */
 .ticket.vip{--paper:linear-gradient(115deg,#FFE7B5 0%,#FFC46B 38%,#FF9A2E 100%);--ink:#1B0F05;--muted:#5A3712;--perf:rgba(27,15,5,.35);
   background:var(--paper);box-shadow:0 0 0 1px rgba(255,240,200,.6) inset,0 30px 90px rgba(255,154,46,.35)}
+.ticket.vip,.ticket.vip h3,.ticket.vip li,.ticket.vip .price,.ticket.vip .price sup{color:#1B0F05}
+.ticket.vip .pitch,.ticket.vip .admit,.ticket.vip .once{color:#4A2A08}
+.ticket.vip .main,.ticket.vip .stub{position:relative;z-index:1}
+.ticket.vip li::before{opacity:.22}
 .ticket.vip .btn{background:#1B0F05;color:#FFE1A6;box-shadow:none}
 .ticket.vip .btn:hover{box-shadow:0 10px 30px rgba(27,15,5,.35)}
-.ticket.vip::after{content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;
+.ticket.vip::after{content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;z-index:0;
   background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);background-size:250% 100%;animation:shine 6s ease-in-out infinite}
 @keyframes shine{0%,60%{background-position:120% 0}100%{background-position:-120% 0}}
 
