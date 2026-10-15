@@ -461,6 +461,12 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   footer{padding-bottom:96px}
   .toast{bottom:90px}
 }
+@media (max-width:860px){
+  .steps{margin-top:28px;gap:12px}
+  .steps li{display:grid;grid-template-columns:44px 1fr;column-gap:14px;padding:18px}
+  .steps li::before{grid-row:span 2;font-size:40px;margin:0}
+  .promise .band{padding:40px 20px}
+}
 </style>
 </head>
 <body>
@@ -482,7 +488,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     <div class="hero-copy">
       <span class="kicker">(01) For independent artists and DJs</span>
       <h1 class="display">Your song deserves a <em>crowd.</em></h1>
-      <p>Everyone is fighting for the same scroll. We build your rollout online, then put your song on real walls in your city with posters, stickers and flyers mailed to your door.</p>
+      <p>Rollout plans, promo content and real posters on real walls. One payment. No bots.</p>
       <div class="cta-row">
         <a href="#plans" class="btn">See the plans</a>
         <a href="#how" class="btn line">How it works</a>
@@ -503,97 +509,17 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <span>Custom cover art</span><span>Rollout plans</span><span>Promo clips</span><span>Posters</span><span>Stickers</span><span>Flyers</span><span>No bots</span><span>No fake streams</span><span>One payment</span>
 </div></div>
 
-<section class="soundcheck">
-  <div class="wrap grid">
-    <div class="head">
-      <h2 class="display h2">Soundcheck first</h2>
-      <p class="sub">Posting a song isn't the same as people hearing it. Before we push anything, we check what you've got.</p>
-    </div>
-    <ul class="checks">
-      <li>
-        <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>
-        <h3>Cover art</h3>
-        <p>It's the first thing anyone sees. If it doesn't stop the scroll, the song never gets a chance.</p>
-      </li>
-      <li>
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></span>
-        <h3>Visual identity</h3>
-        <p>Songs that pop have a look and a feel behind them, not just an audio file.</p>
-      </li>
-      <li>
-        <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
-        <h3>Rollout</h3>
-        <p>One post on release day isn't a plan. We map out what to post, where, and when.</p>
-      </li>
-      <li>
-        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2c2.8.2 5 2.6 5 5.8"/></svg></span>
-        <h3>Real listeners</h3>
-        <p>No bots and no fake streams. Just people finding music they actually like.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="street" id="street">
-  <div class="wrap grid">
-    <div>
-      <h2 class="display h2">The feed is crowded. Your city isn't.</h2>
-      <p class="sub">Every artist is posting the same link to the same feed. A poster at the barbershop, a sticker on the record store wall and a flyer on the open mic board reach people your posts never will.</p>
-      <ul class="points">
-        <li><b>Printed and mailed to you</b><span>Posters, stickers and flyers made for your release and matched to your cover, shipped to your door.</span></li>
-        <li><b>A QR code on every piece</b><span>One scan and they're listening. No searching, no misspelled names.</span></li>
-        <li><b>Where to put them</b><span>A list of spots in your city that welcome posters and stickers, so your promo stays up and stays legal.</span></li>
-      </ul>
-    </div>
-    <div class="wall" aria-label="Example Street Kit: posters, stickers and a flyer on a wall">
-      <div class="poster p1"><div class="art"></div><b>Your song<br>out now</b><small><span>Scan to listen</span><i class="qr"></i></small></div>
-      <div class="poster p2"><div class="art"></div><b>Live this Friday</b><small><span>Scan for the song</span><i class="qr"></i></small></div>
-      <div class="sticker s1">Run it<br>up</div>
-      <div class="sticker s2">Out<br>now</div>
-      <div class="flyer"><b>New music</b>Scan the code. Stream it tonight.</div>
-    </div>
-  </div>
-</section>
-
-<section class="scan">
-  <div class="wrap grid">
-    <div>
-      <h2 class="display h2">See what's holding your song back</h2>
-      <p class="sub">Every order starts with a release scan. You get a clear score on what's working, what isn't, and exactly what to fix.</p>
-    </div>
-    <div class="scan-card" aria-label="Example release scan">
-      <div class="scan-top"><b>Release scan</b><span>Example</span></div>
-      <div class="row"><div class="t"><span>Cover art</span><span>82</span></div><div class="bar"><i style="width:82%"></i></div><p>Strong image. Title is hard to read at small sizes.</p></div>
-      <div class="row"><div class="t"><span>Visual identity</span><span>54</span></div><div class="bar"><i style="width:54%"></i></div><p>Posts don't share a consistent look yet.</p></div>
-      <div class="row"><div class="t"><span>Rollout</span><span>30</span></div><div class="bar"><i class="low" style="width:30%"></i></div><p>Only one post planned. Needs a two week push.</p></div>
-      <div class="row"><div class="t"><span>Your hook</span><span>0:42 to 0:57</span></div><p>The strongest 15 seconds of your song. Lead every clip with this.</p></div>
-      <div class="row"><div class="t"><span>Loudness</span><span>Too quiet</span></div><p>Will sound weaker than other songs on Spotify. Fix before release.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="how" id="how">
-  <div class="wrap">
-    <h2 class="display h2">How it works</h2>
-    <ol class="steps">
-      <li><h3>Pick your plan</h3><p>Choose how big a push your song or DJ mix needs. Pay once, no subscription.</p></li>
-      <li><h3>Send your music</h3><p>Send your song file, your link and your cover art, and tell us who the song is for.</p></li>
-      <li><h3>Get your campaign</h3><p>Your release plan, promo content and captions arrive ready to post, usually within 3 to 5 days. Street Kits are printed and shipped to your door.</p></li>
-    </ol>
-  </div>
-</section>
-
 <section class="plans" id="plans">
   <div class="wrap">
     <div class="plans-head">
       <div>
-        <h2 class="display h2">Pick your pass</h2>
-        <p class="sub">One song or DJ mix per plan. One-time payment. No hidden fees. Add custom cover art or a Street Kit to any plan, or get them on their own.</p>
+        <h2 class="display h2">Pick your plan</h2>
+        <p class="sub">Pay once. No subscription. No bots.</p>
       </div>
     </div>
     <div class="founding" id="founding" hidden>
       <span class="f-tag">Founding Artist special</span>
-      <p><b>The first 20 artists get 20% off any plan.</b> Your code <b class="code">FOUNDING20</b> is added at checkout automatically. When the 20 spots are gone, it's gone.</p>
+      <p><b>First 20 artists get 20% off.</b> Applied at checkout automatically.</p>
     </div>
 
     <div class="tickets">
@@ -710,6 +636,86 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <ul class="trust">
         <li>No fake streams</li><li>No bots</li><li>Real printed promo</li><li>No hidden fees</li><li>No subscription</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <h2 class="display h2">How it works</h2>
+    <ol class="steps">
+      <li><h3>Pick your plan</h3><p>Choose how big a push your song or DJ mix needs. Pay once, no subscription.</p></li>
+      <li><h3>Send your music</h3><p>Send your song file, your link and your cover art, and tell us who the song is for.</p></li>
+      <li><h3>Get your campaign</h3><p>Your release plan, promo content and captions arrive ready to post, usually within 3 to 5 days. Street Kits are printed and shipped to your door.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="street" id="street">
+  <div class="wrap grid">
+    <div>
+      <h2 class="display h2">The feed is crowded. Your city isn't.</h2>
+      <p class="sub">Every artist is posting the same link to the same feed. A poster at the barbershop, a sticker on the record store wall and a flyer on the open mic board reach people your posts never will.</p>
+      <ul class="points">
+        <li><b>Printed and mailed to you</b><span>Posters, stickers and flyers made for your release and matched to your cover, shipped to your door.</span></li>
+        <li><b>A QR code on every piece</b><span>One scan and they're listening. No searching, no misspelled names.</span></li>
+        <li><b>Where to put them</b><span>A list of spots in your city that welcome posters and stickers, so your promo stays up and stays legal.</span></li>
+      </ul>
+    </div>
+    <div class="wall" aria-label="Example Street Kit: posters, stickers and a flyer on a wall">
+      <div class="poster p1"><div class="art"></div><b>Your song<br>out now</b><small><span>Scan to listen</span><i class="qr"></i></small></div>
+      <div class="poster p2"><div class="art"></div><b>Live this Friday</b><small><span>Scan for the song</span><i class="qr"></i></small></div>
+      <div class="sticker s1">Run it<br>up</div>
+      <div class="sticker s2">Out<br>now</div>
+      <div class="flyer"><b>New music</b>Scan the code. Stream it tonight.</div>
+    </div>
+  </div>
+</section>
+
+<section class="soundcheck">
+  <div class="wrap grid">
+    <div class="head">
+      <h2 class="display h2">Soundcheck first</h2>
+      <p class="sub">Posting a song isn't the same as people hearing it. Before we push anything, we check what you've got.</p>
+    </div>
+    <ul class="checks">
+      <li>
+        <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>
+        <h3>Cover art</h3>
+        <p>It's the first thing anyone sees. If it doesn't stop the scroll, the song never gets a chance.</p>
+      </li>
+      <li>
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></span>
+        <h3>Visual identity</h3>
+        <p>Songs that pop have a look and a feel behind them, not just an audio file.</p>
+      </li>
+      <li>
+        <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <h3>Rollout</h3>
+        <p>One post on release day isn't a plan. We map out what to post, where, and when.</p>
+      </li>
+      <li>
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2c2.8.2 5 2.6 5 5.8"/></svg></span>
+        <h3>Real listeners</h3>
+        <p>No bots and no fake streams. Just people finding music they actually like.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="scan">
+  <div class="wrap grid">
+    <div>
+      <h2 class="display h2">See what's holding your song back</h2>
+      <p class="sub">Every order starts with a release scan. You get a clear score on what's working, what isn't, and exactly what to fix.</p>
+    </div>
+    <div class="scan-card" aria-label="Example release scan">
+      <div class="scan-top"><b>Release scan</b><span>Example</span></div>
+      <div class="row"><div class="t"><span>Cover art</span><span>82</span></div><div class="bar"><i style="width:82%"></i></div><p>Strong image. Title is hard to read at small sizes.</p></div>
+      <div class="row"><div class="t"><span>Visual identity</span><span>54</span></div><div class="bar"><i style="width:54%"></i></div><p>Posts don't share a consistent look yet.</p></div>
+      <div class="row"><div class="t"><span>Rollout</span><span>30</span></div><div class="bar"><i class="low" style="width:30%"></i></div><p>Only one post planned. Needs a two week push.</p></div>
+      <div class="row"><div class="t"><span>Your hook</span><span>0:42 to 0:57</span></div><p>The strongest 15 seconds of your song. Lead every clip with this.</p></div>
+      <div class="row"><div class="t"><span>Loudness</span><span>Too quiet</span></div><p>Will sound weaker than other songs on Spotify. Fix before release.</p></div>
     </div>
   </div>
 </section>
