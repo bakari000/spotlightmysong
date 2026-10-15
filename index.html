@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spotlight My Song</title>
 <meta name="description" content="Promotion for independent artists and DJs, online and on the street. Release plans, promo content, ad campaigns and printed Street Kits with posters, stickers and flyers mailed to your door.">
-<meta name="theme-color" content="#0E0A12">
+<meta name="theme-color" content="#0B0B0B">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/favicon.png">
 <meta property="og:type" content="website">
@@ -310,6 +310,129 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .flyer b{font-size:13px}
 @media (max-width:860px){.price{font-size:56px}}
 @media (max-width:600px){.logo{font-size:13px}.checks h3{font-size:22px}}
+
+/* ===================== STREET REDESIGN ===================== */
+html,body{overflow-x:clip}
+:root{--xink:#0B0B0B;--xpaper:#F2EEE6;--xorange:#FF8A4C;--xline2:#2A2A2A}
+body{background:var(--xink);color:var(--xpaper)}
+body::after{opacity:.14}
+.beam,.lamp,.haze,.rig,#dust,#crowd{display:none!important}
+section{border-top:2px solid var(--xline2)}
+.display{color:var(--xpaper);text-transform:uppercase}
+.display em{font-style:normal;color:var(--xorange)}
+.sub,.steps p,.checks p,details p,.ticket .pitch{color:#B9B3A9}
+
+/* buttons: hard edges, offset shadow */
+.btn{border-radius:0;background:var(--xorange);color:#0B0B0B;-webkit-text-fill-color:#0B0B0B;box-shadow:5px 5px 0 var(--xpaper);text-transform:uppercase;letter-spacing:.04em;font-weight:800;font-size:15px;padding:16px 26px;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--xpaper)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--xpaper)}
+.btn.line{background:transparent;color:var(--xpaper);-webkit-text-fill-color:var(--xpaper);box-shadow:inset 0 0 0 2px var(--xpaper);backdrop-filter:none}
+.btn.line:hover{box-shadow:inset 0 0 0 2px var(--xorange);color:var(--xorange);-webkit-text-fill-color:var(--xorange);transform:none}
+.nav-link{border-radius:0;box-shadow:inset 0 0 0 2px var(--xpaper);text-transform:uppercase;font-size:13px;letter-spacing:.06em;font-weight:800}
+.logo svg{display:none}
+.logo::before{content:"";width:14px;height:14px;background:var(--xorange)}
+nav{border-bottom:2px solid var(--xline2);background:rgba(11,11,11,.85);backdrop-filter:blur(8px)}
+
+/* hero */
+.hero{min-height:auto;background:var(--xink);display:block;padding:130px 0 70px}
+.hero-grid{display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:center}
+.hero-copy{align-items:flex-start;text-align:left;padding:0;flex:none}
+.hero-copy::before{display:none}
+.kicker{font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--xorange);margin-bottom:20px;display:block}
+.hero h1{max-width:none;text-shadow:none;color:var(--xpaper);font-size:clamp(40px,7.4vw,104px);line-height:.92}
+.hero p{text-shadow:none;color:#B9B3A9;margin:26px 0 34px;max-width:44ch;font-size:18px}
+.cta-row{justify-content:flex-start}
+.collage{position:relative;aspect-ratio:4/5;max-width:440px;width:100%;justify-self:end}
+.c-poster{position:absolute;background:var(--xpaper);color:#0B0B0B;padding:12px 12px 14px;display:flex;flex-direction:column;box-shadow:10px 12px 0 rgba(0,0,0,.6)}
+.c-art{flex:1;display:block;background:
+  repeating-linear-gradient(135deg,rgba(0,0,0,.18) 0 2px,transparent 2px 9px),
+  linear-gradient(160deg,var(--xorange),#C2410C 70%,#3B1206)}
+.c2 .c-art{background:repeating-radial-gradient(circle at 30% 30%,#0B0B0B 0 6px,#2A2A2A 6px 12px)}
+.c-poster b{font-family:Archivo,Impact,sans-serif;font-weight:900;font-stretch:125%;text-transform:uppercase;line-height:.9;margin-top:10px;letter-spacing:-.01em}
+.c-poster small{display:flex;justify-content:space-between;align-items:end;font-family:ui-monospace,Menlo,monospace;font-size:11px;text-transform:uppercase;margin-top:8px}
+.c1{left:0;top:4%;width:66%;height:72%;transform:rotate(-4deg)}
+.c1 b{font-size:clamp(22px,3vw,38px)}
+.c2{right:0;top:30%;width:46%;height:52%;transform:rotate(5deg);background:#E9E3D7}
+.c2 b{font-size:clamp(14px,1.8vw,22px)}
+.tape{position:absolute;width:90px;height:26px;background:rgba(242,238,230,.55);mix-blend-mode:screen}
+.t1{left:22%;top:1%;transform:rotate(-8deg)}
+.t2{right:12%;top:27%;transform:rotate(12deg)}
+.c-sticker{position:absolute;left:8%;bottom:4%;width:110px;height:110px;border-radius:50%;background:var(--xorange);color:#0B0B0B;display:grid;place-items:center;text-align:center;font-family:Archivo,Impact,sans-serif;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:20px;line-height:.9;transform:rotate(-14deg);box-shadow:6px 6px 0 rgba(0,0,0,.6)}
+.c-tag{position:absolute;right:4%;bottom:6%;background:#0B0B0B;color:var(--xorange);border:2px solid var(--xorange);padding:8px 12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;text-transform:uppercase;line-height:1.2;transform:rotate(-3deg)}
+@media (max-width:860px){.hero{padding:110px 0 50px}.hero-grid{grid-template-columns:1fr}.collage{justify-self:center;max-width:340px;margin-top:10px}}
+@media (max-width:600px){.cta-row{flex-direction:row;flex-wrap:wrap;max-width:none}.cta-row .btn{flex:1 1 auto}}
+
+/* ticker */
+.ticker{background:var(--xorange);color:#0B0B0B;overflow:hidden;border-top:2px solid #0B0B0B;border-bottom:2px solid #0B0B0B;transform:rotate(-1.2deg);margin:10px -20px 0;position:relative;z-index:2}
+.track{display:flex;width:max-content;animation:tick 28s linear infinite}
+.track span{font-family:Archivo,Impact,sans-serif;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:22px;padding:12px 0;white-space:nowrap}
+.track span::after{content:"\2731";margin:0 22px;font-size:16px;vertical-align:3px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* soundcheck */
+.checks{border-top:2px solid var(--xline2)}
+.checks li{border-bottom:2px solid var(--xline2)}
+.checks .ico{border-radius:0;background:transparent;box-shadow:inset 0 0 0 2px var(--xorange)}
+.checks .ico svg{stroke:var(--xorange)}
+.checks h3{text-transform:uppercase}
+
+/* street wall */
+.street{background:var(--xink)}
+.wall{border-radius:0;background:repeating-linear-gradient(0deg,#1A1A1A 0 38px,#151515 38px 40px);box-shadow:inset 0 0 0 2px var(--xline2)}
+.wall::before{background:none}
+.street .points li{border-left-color:var(--xorange)}
+.poster .art{border-radius:0;background:repeating-linear-gradient(135deg,rgba(0,0,0,.18) 0 2px,transparent 2px 9px),linear-gradient(160deg,var(--xorange),#C2410C 70%,#3B1206)}
+.p2 .art{background:repeating-radial-gradient(circle at 30% 30%,#0B0B0B 0 6px,#2A2A2A 6px 12px)}
+.s1{background:var(--xorange)}
+.s2{color:var(--xorange);box-shadow:0 0 0 3px var(--xorange) inset,0 8px 18px rgba(0,0,0,.45)}
+.flyer{background:var(--xpaper)}
+
+/* scan card */
+.scan-card{border-radius:0;background:var(--xpaper);box-shadow:10px 10px 0 var(--xorange)}
+.scan-top span{border-radius:0;background:#0B0B0B;color:var(--xorange)}
+.bar{border-radius:0;background:#DDD5C7}.bar i{border-radius:0;background:#0B0B0B}.bar i.low{background:var(--xorange)}
+
+/* steps */
+.how{background:var(--xink)}
+.steps li{border-radius:0;background:transparent;box-shadow:inset 0 0 0 2px var(--xline2)}
+.steps li::before{color:var(--xorange)}
+
+/* plans */
+.plans{background:var(--xink)}
+.plans::before{display:none}
+.ticket{border-radius:0;--paper:#141414;box-shadow:inset 0 0 0 2px var(--xline2)}
+.ticket.kit{box-shadow:inset 0 0 0 2px var(--xorange)}
+.stub::before,.stub::after{background:var(--xink)}
+.tag{border-radius:0;background:var(--xorange);color:#0B0B0B;-webkit-text-fill-color:#0B0B0B;text-transform:uppercase;letter-spacing:.05em;font-size:11.5px}
+.ticket.vip{--paper:var(--xorange);background:var(--xorange);box-shadow:10px 10px 0 var(--xpaper)}
+.ticket.vip::after{display:none}
+.ticket.vip .tag{background:#0B0B0B;color:var(--xorange);-webkit-text-fill-color:var(--xorange)}
+.ticket.vip .btn{background:#0B0B0B;color:var(--xorange);-webkit-text-fill-color:var(--xorange);box-shadow:5px 5px 0 rgba(0,0,0,.35)}
+.ticket.vip .btn:hover{box-shadow:7px 7px 0 rgba(0,0,0,.35)}
+.ticket .btn.line{box-shadow:inset 0 0 0 2px var(--xpaper)}
+.ticket li::before{border-radius:0}
+.founding{border-radius:0;background:transparent;box-shadow:inset 0 0 0 2px var(--xorange)}
+.f-tag{border-radius:0;background:var(--xorange)}
+.fprice{color:var(--xorange)}.ticket.vip .fprice{color:#3B1206;-webkit-text-fill-color:#3B1206}
+
+/* promise, faq, encore */
+.promise .band{border-radius:0;background:var(--xpaper);color:#0B0B0B;box-shadow:none}
+.promise .band .h2{color:#0B0B0B}
+.promise .band .sub{color:#3A3A3A}
+.trust li{border-radius:0;background:#0B0B0B;color:var(--xorange);box-shadow:none;text-transform:uppercase;font-size:13px;letter-spacing:.05em}
+details,details:first-child{border-color:var(--xline2);border-width:2px}
+summary::after{border-color:var(--xorange)}
+.encore{background:var(--xorange);border-top:2px solid #0B0B0B}
+.encore .h2{color:#0B0B0B;text-shadow:none}
+.encore .btn{background:#0B0B0B;color:var(--xorange);-webkit-text-fill-color:var(--xorange);box-shadow:5px 5px 0 var(--xpaper)}
+.encore .btn.line{background:transparent;color:#0B0B0B;-webkit-text-fill-color:#0B0B0B;box-shadow:inset 0 0 0 2px #0B0B0B}
+.encore .cta-row{justify-content:center}
+footer{border-top:2px solid var(--xline2);color:#8E887F}
+footer a{text-decoration:underline;text-underline-offset:3px}
+.toast{border-radius:0;background:var(--xorange);color:#0B0B0B;box-shadow:5px 5px 0 var(--xpaper)}
+@media (prefers-reduced-motion:reduce){.track{animation:none}}
+.tag.out{background:var(--xorange);color:#0B0B0B}
+.founding .code{color:var(--xorange)}
 </style>
 </head>
 <body>
@@ -325,31 +448,32 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 </nav>
 
 <header class="hero">
-  <div class="rig" aria-hidden="true"></div>
-  <span class="lamp" style="left:14%;animation-delay:.1s" aria-hidden="true"></span>
-  <span class="lamp" style="left:36%;animation-delay:.35s" aria-hidden="true"></span>
-  <span class="lamp" style="left:50%;animation-delay:.6s" aria-hidden="true"></span>
-  <span class="lamp" style="left:64%;animation-delay:.35s" aria-hidden="true"></span>
-  <span class="lamp" style="left:86%;animation-delay:.1s" aria-hidden="true"></span>
-  <div class="beam" style="left:14%;--r:-24deg;--r2:-10deg;--d:7s;animation-delay:.1s,0s" aria-hidden="true"></div>
-  <div class="beam rose" style="left:36%;--r:14deg;--r2:-4deg;--d:9s;animation-delay:.35s,0s" aria-hidden="true"></div>
-  <div class="beam" style="left:50%;--o:.35;--r:-3deg;--r2:4deg;--d:6s;animation-delay:.6s,0s" aria-hidden="true"></div>
-  <div class="beam rose" style="left:64%;--r:-14deg;--r2:5deg;--d:8s;animation-delay:.35s,0s" aria-hidden="true"></div>
-  <div class="beam" style="left:86%;--r:24deg;--r2:10deg;--d:7.5s;animation-delay:.1s,0s" aria-hidden="true"></div>
-  <div class="haze" aria-hidden="true"></div>
-  <canvas id="dust" aria-hidden="true"></canvas>
-
-  <div class="hero-copy">
-    <h1 class="display">Your song deserves a crowd</h1>
-    <p>Everyone is fighting for the same scroll. We build your rollout online, then put your song on real walls in your city with posters, stickers and flyers mailed to your door.</p>
-    <div class="cta-row">
-      <a href="#plans" class="btn">See the plans</a>
-      <a href="#how" class="btn line">How it works</a>
+  <canvas id="dust" aria-hidden="true" hidden></canvas>
+  <svg id="crowd" viewBox="0 0 1200 320" aria-hidden="true" hidden></svg>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="kicker">(01) For independent artists and DJs</span>
+      <h1 class="display">Your song deserves a <em>crowd.</em></h1>
+      <p>Everyone is fighting for the same scroll. We build your rollout online, then put your song on real walls in your city with posters, stickers and flyers mailed to your door.</p>
+      <div class="cta-row">
+        <a href="#plans" class="btn">See the plans</a>
+        <a href="#how" class="btn line">How it works</a>
+      </div>
+    </div>
+    <div class="collage" aria-hidden="true">
+      <div class="c-poster c1"><span class="c-art"></span><b>Out now</b><small>Scan to listen <i class="qr"></i></small></div>
+      <div class="c-poster c2"><span class="c-art"></span><b>Live Friday</b><small>Doors 9pm</small></div>
+      <span class="tape t1"></span><span class="tape t2"></span>
+      <div class="c-sticker">No<br>bots</div>
+      <div class="c-tag">Real<br>listeners only</div>
     </div>
   </div>
-
-  <svg id="crowd" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
 </header>
+
+<div class="ticker" aria-hidden="true"><div class="track">
+  <span>Cover art</span><span>Rollout plans</span><span>Promo clips</span><span>Posters</span><span>Stickers</span><span>Flyers</span><span>No bots</span><span>No fake streams</span><span>One payment</span>
+  <span>Cover art</span><span>Rollout plans</span><span>Promo clips</span><span>Posters</span><span>Stickers</span><span>Flyers</span><span>No bots</span><span>No fake streams</span><span>One payment</span>
+</div></div>
 
 <section class="soundcheck">
   <div class="wrap grid">
@@ -656,7 +780,7 @@ if (FOUNDING.on) { document.getElementById("founding").hidden = false; }
 /* Dust floating in the light */
 (function(){
   var c = document.getElementById("dust"), x = c.getContext("2d"), parts = [], W, H, dpr = Math.min(window.devicePixelRatio || 1, 2);
-  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var still = true;
   function size(){ W = c.offsetWidth; H = c.offsetHeight; c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr,0,0,dpr,0,0); }
   size(); window.addEventListener("resize", size);
   for (var i = 0; i < 70; i++) parts.push({x:Math.random(), y:Math.random()*.7, r:Math.random()*1.6+.4, v:Math.random()*.00025+.00008, a:Math.random()*.5+.15, p:Math.random()*6.28});
