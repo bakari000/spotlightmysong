@@ -155,28 +155,30 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--smoke);font-s
 /* Set the email customers send their music to. */
 var ORDER_EMAIL = "spotlightmysongofficial@gmail.com";
 
-var plans = {starter:"Starter", boost:"Boost", spotlight:"Spotlight"};
+var plans = {starter:"Starter", boost:"Boost", spotlight:"Spotlight", streetkit:"Street Kit"};
 var q = new URLSearchParams(location.search), plan = plans[(q.get("plan")||"").toLowerCase()];
 if (plan) document.getElementById("pill").textContent = plan + " plan confirmed";
 document.getElementById("mailaddr").textContent = ORDER_EMAIL;
 var GETS = {
  starter:["Cover art and visual review with honest feedback","Custom release plan for your song or DJ mix","Three promo graphics ready to post","Captions written for every post","Streaming readiness check for loudness, clipping and file quality"],
  boost:["Short promo video for Reels, TikTok and Shorts","Hook finder: the best 15 seconds of your song to use in clips","Two week posting schedule","Ten video ideas made for your song"],
+ streetkit:["Posters designed for your release","Stickers","A stack of flyers for shows, open mics and shops","A QR code on every piece that goes straight to your song","A list of spots in your city to put them up","Shipped to your door"],
  spotlight:["Spotify editorial pitch written for you","Artist bio and one page press kit","Ad playbook with exact targeting, budget and ad copy","Step by step guide to launch your ads","Two week check-in: send your stats, get your next moves"]
 };
 var key=(q.get("plan")||"").toLowerCase(), list=[];
 if (key==="starter") list=GETS.starter;
 if (key==="boost") list=GETS.starter.concat(GETS.boost);
 if (key==="spotlight") list=GETS.starter.concat(GETS.boost, GETS.spotlight);
+if (key==="streetkit") list=GETS.streetkit;
 if (list.length){
   var ul=document.getElementById("gets");
   ul.innerHTML='<li class="now">Your starter posting schedule <span>Ready now</span></li>';
   list.forEach(function(x){var li=document.createElement("li");li.textContent=x;ul.appendChild(li)});
-  document.getElementById("comingsub").textContent="Everything in your "+plan+" plan. Your posting schedule is ready below right now. The rest arrives within 3 to 5 days after you send your music.";
+  document.getElementById("comingsub").textContent="Everything in your "+plan+" plan. Your posting schedule is ready below right now. "+(key==="streetkit"?"Your kit is printed and shipped once you send your music and shipping address.":"The rest arrives within 3 to 5 days after you send your music.");
   document.getElementById("coming").hidden=false;
 }
 
-var body = "Plan: " + (plan||"") + "\n\nArtist name:\nSong or mix title:\nGenre:\nTwo artists I sound like:\nWho the song is for:\n\nSong file link (Drive, Dropbox or WeTransfer):\nStreaming or SoundCloud link:\nRelease date:\n\nCover art: attached / don't have one yet\n";
+var body = "Plan: " + (plan||"") + "\n\nArtist name:\nSong or mix title:\nGenre:\nTwo artists I sound like:\nWho the song is for:\n\nSong file link (Drive, Dropbox or WeTransfer):\nStreaming or SoundCloud link:\nRelease date:\n\nCover art: attached / don't have one yet\n" + (key==="streetkit" ? "\nShipping name:\nShipping address:\nCity you're promoting in:\n" : "");
 document.getElementById("mailbtn").href = "mailto:" + ORDER_EMAIL + "?subject=" + encodeURIComponent("New order: " + (plan||"Spotlight My Song")) + "&body=" + encodeURIComponent(body);
 
 var steps = [

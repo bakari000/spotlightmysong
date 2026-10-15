@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spotlight My Song</title>
-<meta name="description" content="Promotion for independent artists and DJs. Cover art review, release plans, promo content and ad campaigns that get your music in front of real listeners.">
+<meta name="description" content="Promotion for independent artists and DJs, online and on the street. Release plans, promo content, ad campaigns and printed Street Kits with posters, stickers and flyers mailed to your door.">
 <meta name="theme-color" content="#0E0A12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,6 +110,34 @@ section{padding:110px 0}
 .row p{font-size:14.5px;color:#4A3420}
 @media (max-width:860px){.scan .grid{grid-template-columns:1fr;gap:36px}}
 
+/* street */
+.street{background:linear-gradient(180deg,var(--night),#140D18)}
+.street .grid{display:grid;grid-template-columns:6fr 5fr;gap:60px;align-items:center}
+.street .points{list-style:none;margin-top:30px;display:grid;gap:18px}
+.street .points li{padding-left:22px;border-left:2px solid var(--tungsten)}
+.street .points b{display:block;font-size:18px}
+.street .points span{color:var(--smoke);font-size:16px}
+.wall{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;
+  background:repeating-linear-gradient(0deg,#2A1E2C 0 38px,#241926 38px 40px),#2A1E2C;box-shadow:0 0 0 1px var(--line) inset,0 30px 80px rgba(0,0,0,.45)}
+.wall::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 20%,rgba(255,196,107,.22),transparent 70%)}
+.poster{position:absolute;background:#FBF4E8;color:#1B0F05;padding:14px;box-shadow:0 14px 30px rgba(0,0,0,.5);display:flex;flex-direction:column}
+.poster .art{flex:1;border-radius:4px;background:radial-gradient(60% 50% at 50% 35%,#FFC46B,#E2572F 60%,#3A1A2A)}
+.poster b{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;text-transform:uppercase;line-height:.9;margin-top:10px}
+.poster small{font-size:11px;font-weight:700;color:#5A3712;display:flex;justify-content:space-between;align-items:end;margin-top:6px}
+.qr{width:34px;height:34px;flex:none;background:
+  conic-gradient(from 90deg at 30% 30%,#1B0F05 25%,transparent 0) 0 0/8px 8px,#FBF4E8;outline:2px solid #1B0F05}
+.p1{left:7%;top:7%;width:50%;height:60%;transform:rotate(-3deg);z-index:2}
+.p1 b{font-size:clamp(20px,3.4vw,30px)}
+.p2{right:6%;top:18%;width:36%;height:44%;transform:rotate(4deg)}
+.p2 b{font-size:clamp(15px,2.4vw,20px)}
+.p2 .art{background:radial-gradient(60% 50% at 50% 40%,#E8547F,#3A1A2A 70%)}
+.sticker{position:absolute;border-radius:50%;display:grid;place-items:center;text-align:center;font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;text-transform:uppercase;line-height:.9;box-shadow:0 8px 18px rgba(0,0,0,.45)}
+.s1{left:12%;bottom:9%;width:96px;height:96px;background:var(--tungsten);color:#1B0F05;font-size:18px;transform:rotate(-12deg)}
+.s2{left:44%;bottom:6%;width:78px;height:78px;background:#1B0F05;color:var(--tungsten);font-size:14px;transform:rotate(9deg);box-shadow:0 0 0 3px var(--tungsten) inset,0 8px 18px rgba(0,0,0,.45)}
+.flyer{position:absolute;right:8%;bottom:6%;width:32%;background:#FFE3B0;color:#1B0F05;padding:10px;font-size:11px;font-weight:700;transform:rotate(-5deg);box-shadow:0 10px 22px rgba(0,0,0,.45)}
+.flyer b{display:block;font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;font-size:18px;text-transform:uppercase;line-height:.9;margin-bottom:4px}
+@media (max-width:860px){.street .grid{grid-template-columns:1fr;gap:40px}.wall{max-width:440px;width:100%;margin:0 auto}}
+
 /* steps */
 .how{background:linear-gradient(180deg,var(--night),var(--night-2))}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;list-style:none;counter-reset:s}
@@ -147,6 +175,8 @@ section{padding:110px 0}
 .once{font-size:13px;color:var(--muted);margin-bottom:18px}
 .stub .btn{width:100%;padding:14px 18px}
 .ticket .btn.line{box-shadow:0 0 0 1px var(--tungsten) inset}
+.ticket.kit{box-shadow:0 0 0 2px rgba(255,196,107,.45) inset,0 30px 60px rgba(0,0,0,.35)}
+.tag.out{background:var(--tungsten);color:#1B0F05}
 
 /* the VIP ticket */
 .ticket.vip{--paper:linear-gradient(115deg,#FFE7B5 0%,#FFC46B 38%,#FF9A2E 100%);--ink:#1B0F05;--muted:#5A3712;--perf:rgba(27,15,5,.35);
@@ -259,7 +289,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
   <div class="hero-copy">
     <h1 class="display">Your song deserves a crowd</h1>
-    <p>We look at your cover art, your visuals and your rollout, then build a campaign that puts your music in front of real listeners.</p>
+    <p>Everyone is fighting for the same scroll. We build your rollout online, then put your song on real walls in your city with posters, stickers and flyers mailed to your door.</p>
     <div class="cta-row">
       <a href="#plans" class="btn">See the plans</a>
       <a href="#how" class="btn line">How it works</a>
@@ -300,6 +330,27 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </section>
 
+<section class="street" id="street">
+  <div class="wrap grid">
+    <div>
+      <h2 class="display h2">The feed is crowded. Your city isn't.</h2>
+      <p class="sub">Every artist is posting the same link to the same feed. A poster at the barbershop, a sticker on the record store wall and a flyer on the open mic board reach people your posts never will.</p>
+      <ul class="points">
+        <li><b>Printed and mailed to you</b><span>Posters, stickers and flyers made for your release and matched to your cover, shipped to your door.</span></li>
+        <li><b>A QR code on every piece</b><span>One scan and they're listening. No searching, no misspelled names.</span></li>
+        <li><b>Where to put them</b><span>A list of spots in your city that welcome posters and stickers, so your promo stays up and stays legal.</span></li>
+      </ul>
+    </div>
+    <div class="wall" aria-label="Example Street Kit: posters, stickers and a flyer on a wall">
+      <div class="poster p1"><div class="art"></div><b>Your song<br>out now</b><small><span>Scan to listen</span><i class="qr"></i></small></div>
+      <div class="poster p2"><div class="art"></div><b>Live this Friday</b><small><span>Scan for the song</span><i class="qr"></i></small></div>
+      <div class="sticker s1">Run it<br>up</div>
+      <div class="sticker s2">Out<br>now</div>
+      <div class="flyer"><b>New music</b>Scan the code. Stream it tonight.</div>
+    </div>
+  </div>
+</section>
+
 <section class="scan">
   <div class="wrap grid">
     <div>
@@ -323,7 +374,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <ol class="steps">
       <li><h3>Pick your plan</h3><p>Choose how big a push your song or DJ mix needs. Pay once, no subscription.</p></li>
       <li><h3>Send your music</h3><p>Send your song file, your link and your cover art, and tell us who the song is for.</p></li>
-      <li><h3>Get your campaign</h3><p>Your release plan, promo content and captions arrive ready to post, usually within 3 to 5 days.</p></li>
+      <li><h3>Get your campaign</h3><p>Your release plan, promo content and captions arrive ready to post, usually within 3 to 5 days. Street Kits are printed and shipped to your door.</p></li>
     </ol>
   </div>
 </section>
@@ -333,7 +384,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div class="plans-head">
       <div>
         <h2 class="display h2">Pick your pass</h2>
-        <p class="sub">One song or DJ mix per plan. One-time payment. No hidden fees.</p>
+        <p class="sub">One song or DJ mix per plan. One-time payment. No hidden fees. Add a Street Kit to any plan or get it on its own.</p>
       </div>
     </div>
 
@@ -398,6 +449,27 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <a href="https://buy.stripe.com/8x200i81DgEG60l7sG2ZO00" class="btn line" data-plan="spotlight">Get Spotlight</a>
         </div>
       </article>
+
+      <article class="ticket kit" id="street-kit">
+        <div class="main">
+          <div class="top"><h3>Street Kit</h3><span class="tag out">Printed and mailed</span></div>
+          <p class="pitch">Take your song off the feed and onto the walls of your city.</p>
+          <ul>
+            <li>Posters designed for your release</li>
+            <li>Stickers people actually want to keep</li>
+            <li>A stack of flyers for shows, open mics and shops</li>
+            <li>A QR code on every piece that goes straight to your song</li>
+            <li>A list of spots in your city to put them up</li>
+            <li>Shipped to your door, ready to hand out</li>
+          </ul>
+        </div>
+        <div class="stub">
+          <span class="admit">Add to any plan or get it alone</span>
+          <div class="price"><sup>$</sup>99</div>
+          <span class="once">one time, shipping included</span>
+          <a href="#" class="btn line" data-plan="streetkit">Get the Street Kit</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -408,7 +480,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <h2 class="display h2">Not feeling it? We redo it free</h2>
       <p class="sub">If you're not happy with your promo materials, tell us what's off and we'll redo them at no extra cost.</p>
       <ul class="trust">
-        <li>No fake streams</li><li>No bots</li><li>No hidden fees</li><li>No subscription</li>
+        <li>No fake streams</li><li>No bots</li><li>Real printed promo</li><li>No hidden fees</li><li>No subscription</li>
       </ul>
     </div>
   </div>
@@ -422,6 +494,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <details><summary>What platforms do you work with?</summary><p>SoundCloud, Spotify, Apple Music, YouTube, Audiomack and more. If your song or DJ mix has a link, we can promote it.</p></details>
       <details><summary>Can I promote a DJ mix?</summary><p>Yes. Mixes, singles, remixes, beats and full projects all work.</p></details>
       <details><summary>How fast do I get my campaign?</summary><p>Most orders are delivered within 3 to 5 days after you send your music and cover art.</p></details>
+      <details><summary>What comes in a Street Kit?</summary><p>Posters, stickers and flyers designed for your release, each with a QR code that takes people straight to your song. It's printed and shipped to your door with a list of spots in your city to put them up.</p></details>
+      <details><summary>Where should I put posters and stickers?</summary><p>Anywhere that welcomes them: record stores, barbershops, coffee shops, venue and campus boards, open mics and your own shows. Always ask first. Promo on property without permission gets torn down and can get you fined.</p></details>
       <details><summary>What if I don't have cover art yet?</summary><p>Order anyway. We'll review what you have and tell you exactly what your release needs.</p></details>
     </div>
   </div>
@@ -439,18 +513,19 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <footer>
   <div class="wrap">
     <span>© 2026 Spotlight My Song</span>
-    <span>Promotion for independent artists and DJs</span>
+    <span>Promotion for independent artists and DJs, online and on the street</span>
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status">Checkout opens soon. Check back shortly.</div>
+<div class="toast" id="toast" role="status">Street Kits open soon. Email spotlightmysongofficial@gmail.com to get on the list.</div>
 
 <script>
 /* Paste each plan's payment link between the quotes when ready. */
 var PAY_LINKS = {
   starter: "https://buy.stripe.com/28E28qdlX9ce2O96oC2ZO02",
   boost: "https://buy.stripe.com/dRmcN4a9Lbkm0G17sG2ZO01",
-  spotlight: "https://buy.stripe.com/8x200i81DgEG60l7sG2ZO00"
+  spotlight: "https://buy.stripe.com/8x200i81DgEG60l7sG2ZO00",
+  streetkit: ""
 };
 
 document.querySelectorAll("[data-plan]").forEach(function(btn){
