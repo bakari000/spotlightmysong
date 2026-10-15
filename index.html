@@ -433,6 +433,34 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){.track{animation:none}}
 .tag.out{background:var(--xorange);color:#0B0B0B}
 .founding .code{color:var(--xorange)}
+
+/* ===== Mobile: easy on the thumbs ===== */
+.inc-toggle{display:none}
+.mbar{display:none}
+@media (max-width:860px){
+  .collage{max-width:270px}
+  .hero{padding:100px 0 36px}
+  section{padding:64px 0}
+  .ticket .main{padding:24px 22px 18px}
+  .ticket ul{display:none;margin-top:16px}
+  .ticket.open ul{display:grid}
+  .inc-toggle{display:inline-flex;align-items:center;gap:8px;margin-top:14px;min-height:44px;padding:0;background:none;border:0;color:inherit;font:inherit;font-weight:700;font-size:15px;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+  .inc-toggle::after{content:"+";font-size:20px;line-height:1;text-decoration:none}
+  .ticket.open .inc-toggle::after{content:"\2212"}
+  .stub{padding:18px 22px 22px}
+  .stub .btn{width:100%;min-height:52px}
+  .tickets{gap:18px;margin-top:32px}
+  summary{min-height:44px;padding:4px 0}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;align-items:center;justify-content:space-between;gap:12px;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#0B0B0B;border-top:2px solid var(--xorange);
+    transform:translateY(110%);transition:transform .25s}
+  .mbar.show{transform:none}
+  .mbar span{font-weight:700;font-size:15px;color:var(--xpaper)}
+  .mbar span b{color:var(--xorange)}
+  .mbar .btn{padding:14px 22px;min-height:48px;box-shadow:4px 4px 0 var(--xpaper)}
+  footer{padding-bottom:96px}
+  .toast{bottom:90px}
+}
 </style>
 </head>
 <body>
@@ -717,6 +745,8 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   </div>
 </footer>
 
+<div class="mbar" id="mbar"><span>Plans from <b>$19</b>, one time</span><a href="#plans" class="btn">See plans</a></div>
+
 <div class="toast" id="toast" role="status">Street Kits open soon. Email spotlightmysongofficial@gmail.com to get on the list.</div>
 
 <script>
@@ -826,6 +856,22 @@ if (FOUNDING.on) { document.getElementById("founding").hidden = false; }
   }
   fit(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
   var t; window.addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150)});
+})();
+/* Mobile: collapsible plan details + bottom plans bar */
+(function(){
+  document.querySelectorAll(".ticket").forEach(function(t){
+    var pitch=t.querySelector(".pitch"); if(!pitch) return;
+    var b=document.createElement("button"); b.type="button"; b.className="inc-toggle"; b.textContent="What's included";
+    b.setAttribute("aria-expanded","false");
+    b.addEventListener("click",function(){var o=t.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false")});
+    pitch.insertAdjacentElement("afterend",b);
+  });
+  var bar=document.getElementById("mbar"), hero=document.querySelector(".hero"), plans=document.getElementById("plans");
+  if(!bar||!("IntersectionObserver" in window)) return;
+  var heroVis=true, plansVis=false;
+  function upd(){ bar.classList.toggle("show", !heroVis && !plansVis); }
+  new IntersectionObserver(function(e){heroVis=e[0].isIntersecting;upd()}).observe(hero);
+  new IntersectionObserver(function(e){plansVis=e[0].isIntersecting;upd()},{rootMargin:"0px 0px -40% 0px"}).observe(plans);
 })();
 </script>
 </body>
