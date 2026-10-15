@@ -19,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Ultra&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Archivo:wdth,wght@125,800;125,900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --night:#0E0A12;
@@ -292,22 +292,24 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   html{scroll-behavior:auto}
 }
 
-/* ===== Street poster headlines: heavy slab with a black outline ===== */
-.display,.logo,.ticket h3,.poster b,.sticker,.flyer b,.steps li::before{font-family:Ultra,"Big Shoulders Display",Impact,serif;font-weight:400;letter-spacing:0}
-.display{line-height:1.02;color:#fff;
-  text-shadow:-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,2px 2px 0 #000,0 3px 0 #000,3px 5px 0 #000,0 10px 30px rgba(0,0,0,.6)}
-.hero h1{font-size:clamp(40px,8.6vw,104px);max-width:14ch;
-  text-shadow:-3px -3px 0 #000,3px -3px 0 #000,-3px 3px 0 #000,3px 3px 0 #000,0 4px 0 #000,5px 7px 0 #000,0 10px 40px rgba(0,0,0,.85)}
-.h2{font-size:clamp(32px,5vw,58px)}
-.encore .h2{font-size:clamp(36px,7vw,84px);max-width:13ch}
-.logo{font-size:18px;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,0 2px 0 #000}
-.ticket h3{font-size:clamp(30px,4.4vw,44px);line-height:1}
-.steps li::before{font-size:60px}
-.p1 b{font-size:clamp(16px,2.6vw,24px)}
-.p2 b{font-size:clamp(12px,1.9vw,16px)}
-.s1{font-size:15px}.s2{font-size:11px}
-.flyer b{font-size:14px}
-@media (max-width:600px){.logo{font-size:14px}}
+/* ===== Headlines: wide, heavy, modern grotesk ===== */
+.display,.logo,.ticket h3,.poster b,.sticker,.flyer b,.steps li::before,.price,.checks h3{font-family:Archivo,"Big Shoulders Display",Impact,sans-serif;font-weight:900;font-stretch:125%;letter-spacing:-.01em}
+.display{line-height:.95;color:var(--cream);text-shadow:none}
+.hero h1{font-size:clamp(38px,8vw,100px);max-width:13ch;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.85)}
+.h2{font-size:clamp(30px,4.8vw,56px)}
+.encore .h2{font-size:clamp(34px,6.6vw,80px);max-width:13ch;text-shadow:0 4px 30px rgba(0,0,0,.8)}
+.logo{font-size:16px;font-weight:800}
+.ticket h3{font-size:clamp(28px,4vw,42px);line-height:1}
+.checks h3{font-size:24px;font-weight:800}
+.price{font-size:64px}
+.price sup{font-size:26px}
+.steps li::before{font-size:56px}
+.p1 b{font-size:clamp(15px,2.4vw,22px)}
+.p2 b{font-size:clamp(11px,1.7vw,15px)}
+.s1{font-size:13px}.s2{font-size:10px}
+.flyer b{font-size:13px}
+@media (max-width:860px){.price{font-size:56px}}
+@media (max-width:600px){.logo{font-size:13px}.checks h3{font-size:22px}}
 </style>
 </head>
 <body>
