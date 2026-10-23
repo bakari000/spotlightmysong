@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Archivo:wdth,wght@125,800;125,900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>(function(){if(new Date()<new Date(2026,10,1))document.documentElement.classList.add("spooky")})();</script>
 <style>
 :root{
   --night:#0E0A12;
@@ -467,6 +468,34 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   .steps li::before{grid-row:span 2;font-size:40px;margin:0}
   .promise .band{padding:40px 20px}
 }
+
+/* ===== Halloween layer: only active while html has .spooky (auto off Nov 1) ===== */
+.hw{display:none}
+.spooky .hw{display:revert}
+.spooky .hw-off{display:none}
+.spooky .moon{display:block;position:absolute;right:-6%;top:-8%;width:46%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 38% 36%,#FFF6E3 0%,#F2E3C4 55%,#D9C29A 100%);
+  box-shadow:0 0 60px 18px rgba(255,214,150,.18),0 0 140px 40px rgba(255,138,76,.10);opacity:.9;z-index:0}
+.spooky .moon::before,.spooky .moon::after{content:"";position:absolute;border-radius:50%;background:rgba(160,130,90,.18)}
+.spooky .moon::before{width:18%;height:18%;left:22%;top:52%}
+.spooky .moon::after{width:11%;height:11%;left:58%;top:28%}
+.spooky .collage .c-poster,.spooky .collage .c-sticker,.spooky .collage .c-tag,.spooky .collage .tape{z-index:1}
+.bats{display:none}
+.spooky .bats{display:block;position:absolute;inset:-12% -10% auto auto;width:70%;height:40%;z-index:2;pointer-events:none}
+.bat{position:absolute;fill:#0B0B0B;filter:drop-shadow(0 0 1px rgba(242,238,230,.35));animation:flap 7s ease-in-out infinite alternate}
+.bat.b1{width:44px;right:18%;top:18%}
+.bat.b2{width:30px;right:52%;top:4%;animation-duration:9s;animation-delay:-3s}
+.bat.b3{width:22px;right:4%;top:46%;animation-duration:11s;animation-delay:-6s}
+@keyframes flap{0%{transform:translate(0,0) rotate(-6deg)}50%{transform:translate(-10px,6px) rotate(4deg)}100%{transform:translate(6px,-4px) rotate(-2deg)}}
+.web{display:none}
+.spooky .web{display:block;position:absolute;width:150px;height:150px;opacity:.16;pointer-events:none;stroke:var(--xpaper);fill:none;stroke-width:1}
+.spooky .plans,.spooky .hero{position:relative}
+.spooky .plans .web{right:0;top:0;transform:scaleX(-1)}
+.spooky .hero .web{left:0;top:58px}
+.spooky .ticker{background:linear-gradient(90deg,#FF7A1A,#FF8A4C 50%,#FF7A1A)}
+.hw-note{margin-top:14px;font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--xorange)}
+@media (max-width:860px){.spooky .hero .web,.spooky .plans .web{width:96px;height:96px}}
+@media (prefers-reduced-motion:reduce){.bat{animation:none}}
 </style>
 </head>
 <body>
@@ -482,11 +511,12 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 </nav>
 
 <header class="hero">
+  <svg class="web" viewBox="0 0 150 150" aria-hidden="true"><path d="M0 0L150 40M0 0L120 120M0 0L40 150M0 0L150 0M0 0L0 150"/><path d="M30 0Q26 14 29 8Q20 20 10 26Q16 22 0 30"/><path d="M70 0Q62 26 66 19Q48 44 24 58Q36 50 0 68"/><path d="M112 0Q100 40 104 30Q76 70 38 92Q56 80 0 106"/><path d="M150 6Q136 58 140 44Q104 98 52 128Q76 112 0 146"/></svg>
   <canvas id="dust" aria-hidden="true" hidden></canvas>
   <svg id="crowd" viewBox="0 0 1200 320" aria-hidden="true" hidden></svg>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="kicker">(01) For independent artists and DJs</span>
+      <span class="kicker hw-off">(01) For independent artists and DJs</span><span class="kicker hw">(10/31) Halloween drop season</span>
       <h1 class="display">Your song deserves a <em>crowd.</em></h1>
       <p>Rollout plans, promo content and real posters on real walls. One payment. No bots.</p>
       <div class="cta-row">
@@ -495,8 +525,9 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       </div>
     </div>
     <div class="collage" aria-hidden="true">
+      <span class="moon hw"></span><div class="bats"><svg class="bat b1" viewBox="0 0 24 12"><path d="M0 6C4 2 8 2 10 5C11 3 13 3 14 5C16 2 20 2 24 6C20 5 18 7 17 9C15 7 13 8 12 10C11 8 9 7 7 9C6 7 4 5 0 6Z"/></svg><svg class="bat b2" viewBox="0 0 24 12"><path d="M0 6C4 2 8 2 10 5C11 3 13 3 14 5C16 2 20 2 24 6C20 5 18 7 17 9C15 7 13 8 12 10C11 8 9 7 7 9C6 7 4 5 0 6Z"/></svg><svg class="bat b3" viewBox="0 0 24 12"><path d="M0 6C4 2 8 2 10 5C11 3 13 3 14 5C16 2 20 2 24 6C20 5 18 7 17 9C15 7 13 8 12 10C11 8 9 7 7 9C6 7 4 5 0 6Z"/></svg></div>
       <div class="c-poster c1"><span class="c-art"></span><b>Out now</b><small>Scan to listen <i class="qr"></i></small></div>
-      <div class="c-poster c2"><span class="c-art"></span><b>Live Friday</b><small>Doors 9pm</small></div>
+      <div class="c-poster c2"><span class="c-art"></span><b class="hw-off">Live Friday</b><b class="hw">Halloween night</b><small>Doors 9pm</small></div>
       <span class="tape t1"></span><span class="tape t2"></span>
       <div class="c-sticker">No<br>bots</div>
       <div class="c-tag">Real<br>listeners only</div>
@@ -510,11 +541,13 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 </div></div>
 
 <section class="plans" id="plans">
+  <svg class="web" viewBox="0 0 150 150" aria-hidden="true"><path d="M0 0L150 40M0 0L120 120M0 0L40 150M0 0L150 0M0 0L0 150"/><path d="M30 0Q26 14 29 8Q20 20 10 26Q16 22 0 30"/><path d="M70 0Q62 26 66 19Q48 44 24 58Q36 50 0 68"/><path d="M112 0Q100 40 104 30Q76 70 38 92Q56 80 0 106"/><path d="M150 6Q136 58 140 44Q104 98 52 128Q76 112 0 146"/></svg>
   <div class="wrap">
     <div class="plans-head">
       <div>
         <h2 class="display h2">Pick your plan</h2>
         <p class="sub">Pay once. No subscription. No bots.</p>
+        <p class="hw-note hw">Dropping for Halloween? Order by Sunday, Oct 25 to have your rollout ready before the 31st.</p>
       </div>
     </div>
     <div class="founding" id="founding" hidden>
