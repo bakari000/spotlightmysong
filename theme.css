@@ -1,0 +1,59 @@
+/* Shared Spotlight My Song look for every page outside the homepage.
+   Matches the homepage: flat black, cream, one orange, hard edges, offset shadows. */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800;125,900&display=swap");
+
+:root{
+  --night:#0B0B0B;--night-2:#141414;--night-3:#1A1A1A;--card:#141414;
+  --line:#2A2A2A;--cream:#F2EEE6;--smoke:#B9B3A9;--dim:#8E887F;
+  --amber:#FF8A4C;--gold:#FF8A4C;--tungsten:#FF8A4C;--ember:#C2410C;--rose:#FF8A4C;--warn:#FF8A4C;
+  --xorange:#FF8A4C;--xpaper:#F2EEE6;
+  color-scheme:dark;
+}
+html,body{background:#0B0B0B!important;color:var(--cream)}
+body::after{opacity:.14}
+
+/* hard edges everywhere, round only where a circle means something */
+*,*::before,*::after{border-radius:0!important}
+.check,.dot,.tl li::before,.send li::before{border-radius:50%!important}
+
+/* headlines */
+.display,h1,.h2,.logo,.mod-head h2,.cta h2{font-family:Archivo,"Big Shoulders Display",Impact,sans-serif!important;font-stretch:125%;font-weight:900;letter-spacing:-.01em}
+h1{text-transform:uppercase;color:var(--cream)!important;line-height:.92}
+.kicker,.when,.mono{font-family:ui-monospace,"SFMono-Regular",Menlo,monospace!important;letter-spacing:.06em;color:var(--xorange)}
+h2{color:var(--cream)}
+a{color:var(--xorange)}
+
+/* header glow gone, flat like the homepage */
+header,.hero{background-image:none!important}
+header::before{display:none!important}
+
+/* nav */
+nav,.top{border-bottom:2px solid var(--line);background:rgba(11,11,11,.9)}
+.logo{text-transform:uppercase;font-size:18px!important;display:inline-flex;align-items:center;gap:10px;color:var(--cream)!important;text-decoration:none}
+.logo svg,.logo img{display:none!important}
+.logo::before{content:"";width:14px;height:14px;background:var(--xorange);flex:none}
+.nav-link{box-shadow:inset 0 0 0 2px var(--cream)!important;border:0!important;background:transparent!important;color:var(--cream)!important;text-transform:uppercase;font-size:13px;letter-spacing:.06em;font-weight:800}
+
+/* buttons */
+.btn,.dl,.big,.tools button{background:var(--xorange)!important;color:#0B0B0B!important;-webkit-text-fill-color:#0B0B0B!important;border:0!important;
+  box-shadow:5px 5px 0 var(--cream)!important;text-transform:uppercase;letter-spacing:.04em;font-weight:800;transition:transform .12s,box-shadow .12s}
+.btn:hover,.dl:hover,.big:hover,.tools button:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--cream)!important}
+.btn.line,.tools button{background:transparent!important;color:var(--cream)!important;-webkit-text-fill-color:var(--cream)!important;box-shadow:inset 0 0 0 2px var(--cream)!important}
+.btn.line:hover,.tools button:hover{transform:none;box-shadow:inset 0 0 0 2px var(--xorange)!important;color:var(--xorange)!important;-webkit-text-fill-color:var(--xorange)!important}
+
+/* tags and pills */
+.pill,.plan-pill,.private{background:var(--xorange)!important;color:#0B0B0B!important;-webkit-text-fill-color:#0B0B0B!important;border:0!important;text-transform:uppercase;letter-spacing:.05em;font-weight:800;font-size:12px}
+.private{background:transparent!important;color:var(--smoke)!important;-webkit-text-fill-color:var(--smoke)!important;box-shadow:inset 0 0 0 2px var(--line);text-transform:none;letter-spacing:0;font-weight:500}
+
+/* cards and boxes: flat panel with a 2px line */
+.card,.mod,.stat,.alert,.cta,label.item,.cov,.copy,.cap,.hook,.drop,.wave,.thumbs figure,.mail,.rev,.gfx figure{
+  background:#141414!important;border:0!important;box-shadow:inset 0 0 0 2px var(--line)!important}
+.drop{box-shadow:inset 0 0 0 2px var(--xorange)!important}
+.cta{box-shadow:inset 0 0 0 2px var(--xorange)!important}
+.check{background:var(--xorange)!important;box-shadow:none!important}
+
+/* progress bars */
+.bar{background:#2A2A2A!important}.bar i{background:var(--xorange)!important}
+
+input,select,textarea{border-radius:0!important}
+footer{border-top:2px solid var(--line);color:#8E887F}
