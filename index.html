@@ -634,7 +634,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
           <span class="admit">Add to any plan or get it alone</span>
           <div class="price"><sup>$</sup>99</div>
           <span class="once">one time, shipping included</span>
-          <a href="#" class="btn line" data-plan="streetkit">Get the Street Kit</a>
+          <a href="https://buy.stripe.com/fZubJ081D88a1K528m2ZO04" class="btn line" data-plan="streetkit">Get the Street Kit</a>
         </div>
       </article>
 
@@ -798,13 +798,13 @@ var PAY_LINKS = {
   starter: "https://buy.stripe.com/28E28qdlX9ce2O96oC2ZO02",
   boost: "https://buy.stripe.com/dRmcN4a9Lbkm0G17sG2ZO01",
   spotlight: "https://buy.stripe.com/8x200i81DgEG60l7sG2ZO00",
-  streetkit: ""
+  streetkit: "https://buy.stripe.com/fZubJ081D88a1K528m2ZO04"
 };
 
 document.querySelectorAll("[data-plan]").forEach(function(btn){
   var url = PAY_LINKS[btn.getAttribute("data-plan")];
   if (url) {
-    if (FOUNDING.on) {
+    if (FOUNDING.on && btn.getAttribute("data-plan") !== "streetkit") {
       url += (url.indexOf("?") < 0 ? "?" : "&") + "prefilled_promo_code=" + FOUNDING.code;
       var pr = btn.parentNode.querySelector(".price");
       if (pr && !btn.parentNode.querySelector(".fprice")) {
