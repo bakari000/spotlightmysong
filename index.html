@@ -496,6 +496,15 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 .hw-note{margin-top:14px;font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--xorange)}
 @media (max-width:860px){.spooky .hero .web,.spooky .plans .web{width:96px;height:96px}}
 @media (prefers-reduced-motion:reduce){.bat{animation:none}}
+
+/* who it's for */
+.who{background:var(--xink)}
+.who .h2 em{font-style:normal;color:var(--xorange)}
+.who-list{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:0;max-width:820px}
+.who-list li{padding:18px 0 18px 30px;border-bottom:2px solid var(--xline2);font-size:clamp(18px,2.2vw,24px);font-weight:600;line-height:1.35;color:var(--xpaper);position:relative}
+.who-list li::before{content:"";position:absolute;left:0;top:28px;width:12px;height:12px;background:var(--xorange)}
+.who-close{margin-top:30px;max-width:46ch;font-size:19px;color:#B9B3A9}
+@media (max-width:860px){.who-list li::before{top:25px}}
 </style>
 </head>
 <body>
@@ -516,9 +525,9 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <svg id="crowd" viewBox="0 0 1200 320" aria-hidden="true" hidden></svg>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="kicker hw-off">(01) For independent artists and DJs</span><span class="kicker hw">(10/31) Halloween drop season</span>
-      <h1 class="display">Your song deserves a <em>crowd.</em></h1>
-      <p>Rollout plans, promo content and real posters on real walls. One payment. No bots.</p>
+      <span class="kicker hw-off">(01) For the artists nobody bet on</span><span class="kicker hw">(10/31) Halloween drop season</span>
+      <h1 class="display">Counted out. Still <em>dropping.</em></h1>
+      <p>You have the talent, a hard drive full of ideas and a day job. We handle the rollout, the promo and the posters so your song finally gets heard. One payment. No bots.</p>
       <div class="cta-row">
         <a href="#plans" class="btn">See the plans</a>
         <a href="#how" class="btn line">How it works</a>
@@ -540,6 +549,19 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <span>Custom cover art</span><span>Rollout plans</span><span>Promo clips</span><span>Posters</span><span>Stickers</span><span>Flyers</span><span>No bots</span><span>No fake streams</span><span>One payment</span>
 </div></div>
 
+<section class="who" id="who">
+  <div class="wrap">
+    <h2 class="display h2">This is for the ones <em>still trying.</em></h2>
+    <ul class="who-list">
+      <li>For the artist with forty beats on the hard drive and four finished songs.</li>
+      <li>For the one who drives, delivers or clocks in all day, then makes music all night.</li>
+      <li>For the self taught. No label, no budget, no connections.</li>
+      <li>For everybody who got counted out and kept going anyway.</li>
+    </ul>
+    <p class="who-close">You bring the music. We bring the plan, the content and the push, so you can get back to making the next one.</p>
+  </div>
+</section>
+
 <section class="plans" id="plans">
   <svg class="web" viewBox="0 0 150 150" aria-hidden="true"><path d="M0 0L150 40M0 0L120 120M0 0L40 150M0 0L150 0M0 0L0 150"/><path d="M30 0Q26 14 29 8Q20 20 10 26Q16 22 0 30"/><path d="M70 0Q62 26 66 19Q48 44 24 58Q36 50 0 68"/><path d="M112 0Q100 40 104 30Q76 70 38 92Q56 80 0 106"/><path d="M150 6Q136 58 140 44Q104 98 52 128Q76 112 0 146"/></svg>
   <div class="wrap">
@@ -559,7 +581,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <article class="ticket">
         <div class="main">
           <div class="top"><h3>Starter</h3></div>
-          <p class="pitch">Get your release ready the right way.</p>
+          <p class="pitch">We get your release ready. You just hit upload.</p>
           <ul>
             <li>Cover art and visual review with honest feedback</li>
             <li>Custom release plan for your song or DJ mix</li>
@@ -579,7 +601,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <article class="ticket vip">
         <div class="main">
           <div class="top"><h3>Boost</h3><span class="tag">Most picked</span></div>
-          <p class="pitch">Build real momentum around your drop.</p>
+          <p class="pitch">We make the clips and the schedule. You just post.</p>
           <ul>
             <li>Everything in Starter</li>
             <li>Short promo video for Reels, TikTok and Shorts</li>
@@ -599,7 +621,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <article class="ticket">
         <div class="main">
           <div class="top"><h3>Spotlight</h3></div>
-          <p class="pitch">The full rollout, from pitch to paid ads.</p>
+          <p class="pitch">The full rollout, from pitch to paid ads. We write it all, you press go.</p>
           <ul>
             <li>Everything in Boost</li>
             <li>Spotify editorial pitch written for you</li>
@@ -774,6 +796,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <div class="beam" style="left:70%;--r:16deg;--r2:6deg;--d:8s" aria-hidden="true"></div>
   <div class="wrap">
     <h2 class="display h2">Stop dropping songs into silence</h2>
+    <p class="sub" style="margin:14px auto 28px;color:#2A1608">They counted you out. Let the music say otherwise.</p>
     <div class="cta-row"><a href="#plans" class="btn">Spotlight my song</a><a href="/lab/" class="btn line">Scan your song free</a></div>
   </div>
 </section>
